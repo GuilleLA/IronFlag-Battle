@@ -16,9 +16,10 @@ Flags.prototype.draw = function() {
 
 
 //Constructor of killing balls
-function Component(x, y){
+function Component(x, y, radius){
   this.x = x;
   this.y = y;
+  this.radius = radius;
   this.speedX = 0;
   this.sppedY = 0;
   
@@ -27,8 +28,27 @@ function Component(x, y){
 Component.prototype.draw = function() {
   ctx = myGameArea.canvas.getContext("2d");
   ctx.beginPath();
-  ctx.arc(this.x, this.y, 15, 0, Math.PI*2, true)
+  ctx.arc(this.x, this.y, this.radius, 0, Math.PI*2, true)
   ctx.fill();
+}
+
+Component.prototype.crashWithBorders = function(){
+  if((this.x + this.radius) >= 800){
+    this.speedX *= -1;
+    this.speedY *= -1; 
+  }
+  if((this.x + this.radius) <= 0){
+    this.speedX *= -1;
+    this.speedY *= -1; 
+  }
+  if((this.y + this.radius) >= 800){
+    this.speedY *= -1;
+    this.speedX *= -1; 
+  }
+  if((this.y + this.radius) <= 800){
+    this.speedY *= -1;
+    this.speedX *= -1; 
+  }
 }
 
 //Constructor player

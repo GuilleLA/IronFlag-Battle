@@ -8,12 +8,12 @@ window.onload = function() {
   //Creation of objects
   flagPT = new Flags(20, 20, 20, 20)
   flagFT = new Flags(20, 20, 760, 760)
-  ball1 = new Component(200, Math.floor(Math.random()*800))
-  ball2 = new Component(600, Math.floor(Math.random()*800))
-  ball3 = new Component(Math.floor(Math.random()*800), 200)
-  ball4 = new Component(Math.floor(Math.random()*800), 600)
-  ball5 = new Component(randomBallPosition, randomBallPosition)
-  ball6 = new Component(800-randomBallPosition, randomBallPosition)
+  ball1 = new Component(200, Math.floor(Math.random()*800), 15)
+  ball2 = new Component(600, Math.floor(Math.random()*800), 15)
+  ball3 = new Component(Math.floor(Math.random()*800), 200, 15)
+  ball4 = new Component(Math.floor(Math.random()*800), 600, 15)
+  ball5 = new Component(randomBallPosition, randomBallPosition, 15)
+  ball6 = new Component(800-randomBallPosition, randomBallPosition, 15)
   balls.push(ball1, ball2, ball3, ball4, ball5, ball6);
   playerPT = new Player(25, 25, 50, 100, "down");
   playerFT = new Player(25, 25, 725, 675, "up")
