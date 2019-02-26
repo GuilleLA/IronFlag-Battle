@@ -14,9 +14,7 @@ function Flags (width, height, x, y) {
 
 
 //Constructor of killing balls
-function Component(width, height, x, y){
-  this.width = width;
-  this.height = height;
+function Component(x, y){
   this.x = x;
   this.y = y;
   this.speedX = 0;
@@ -28,3 +26,19 @@ function Component(width, height, x, y){
     ctx.fill();
   }
 }
+
+
+//Constructor player
+function Player (width, height, x, y, facing){
+  this.width = width;
+  this.height = height;
+  this.x = x;
+  this.y = y;
+  this.facing = facing;
+  this.draw = function() {
+    ctx = myGameArea.canvas.getContext("2d");
+    ctx.fillStyle = "yellow";
+    ctx.fillRect(x, y, this.width, this.height);
+  }
+}
+
