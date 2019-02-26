@@ -5,11 +5,13 @@ function Flags (width, height, x, y) {
   this.height = height;
   this.x = x;
   this.y = y;
-  this.draw = function() {
-    ctx = myGameArea.canvas.getContext("2d");
-    ctx.fillStyle = "blue";
-    ctx.fillRect(x, y, this.width, this.height);
-  }
+  
+}
+
+Flags.prototype.draw = function() {
+  ctx = myGameArea.canvas.getContext("2d");
+  ctx.fillStyle = "blue";
+  ctx.fillRect(this.x, this.y, this.width, this.height);
 }
 
 
@@ -19,14 +21,15 @@ function Component(x, y){
   this.y = y;
   this.speedX = 0;
   this.sppedY = 0;
-  this.draw = function() {
-    ctx = myGameArea.canvas.getContext("2d");
-    ctx.beginPath();
-    ctx.arc(this.x, this.y, 15, 0, Math.PI*2, true)
-    ctx.fill();
-  }
+  
 }
 
+Component.prototype.draw = function() {
+  ctx = myGameArea.canvas.getContext("2d");
+  ctx.beginPath();
+  ctx.arc(this.x, this.y, 15, 0, Math.PI*2, true)
+  ctx.fill();
+}
 
 //Constructor player
 function Player (width, height, x, y, facing){
@@ -35,10 +38,11 @@ function Player (width, height, x, y, facing){
   this.x = x;
   this.y = y;
   this.facing = facing;
-  this.draw = function() {
-    ctx = myGameArea.canvas.getContext("2d");
-    ctx.fillStyle = "yellow";
-    ctx.fillRect(x, y, this.width, this.height);
-  }
+  
 }
 
+Player.prototype.draw = function() {
+  ctx = myGameArea.canvas.getContext("2d");
+  ctx.fillStyle = "yellow";
+  ctx.fillRect(this.x, this.y, this.width, this.height);
+}
