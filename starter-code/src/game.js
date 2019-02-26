@@ -10,6 +10,8 @@ var myGameArea = {
     this.ctx.fillStyle = "black";
     this.ctx.globalAlpha = 0.5;
     this.ctx.fillRect(0, 0, 60, this.canvas.height);
+    this.ctx.globalAlpha = 0.5;
+    this.ctx.fillRect(740, 0, 60, this.canvas.height);
 
     document.body.insertBefore(this.canvas, document.body.childNodes[0]);
   },
