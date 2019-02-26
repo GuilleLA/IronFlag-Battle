@@ -9,10 +9,13 @@ var myGameArea = {
     this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
     this.ctx.fillStyle = "black";
     this.ctx.globalAlpha = 0.5;
-    this.ctx.fillRect(0, 0, 60, this.canvas.height);
-    this.ctx.globalAlpha = 0.5;
-    this.ctx.fillRect(740, 0, 60, this.canvas.height);
-
+    this.ctx.beginPath();
+    this.ctx.arc(0, 0, 100, 0, Math.PI*2, true)
+    this.ctx.fill();
+    this.ctx.beginPath();
+    this.ctx.arc(800, 800, 100, 0, Math.PI*2, true)
+    this.ctx.fill();
+    
     document.body.insertBefore(this.canvas, document.body.childNodes[0]);
   },
 }
