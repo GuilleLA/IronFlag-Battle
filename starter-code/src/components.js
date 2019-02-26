@@ -38,6 +38,7 @@ function Player (width, height, x, y, facing){
   this.x = x;
   this.y = y;
   this.facing = facing;
+  this.flag = false;
   
 }
 

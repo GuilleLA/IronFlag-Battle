@@ -19,3 +19,51 @@ var myGameArea = {
     document.body.insertBefore(this.canvas, document.body.childNodes[0]);
   },
 }
+
+
+
+
+
+
+
+//players motion
+function moveUp(obj){
+  if(obj.flag === false){
+    obj.y -= 5;
+  }
+  else{
+    obj.y -= 3
+  }
+}
+
+function moveDown(obj){
+  if(obj.flag === false){
+    obj.y += 5;
+  }
+  else{
+    obj.y += 3
+  }
+}
+
+function moveRight(obj){
+  if(obj.flag === false){
+    obj.x += 5;
+  }
+  else{
+    obj.x += 3
+  }
+}
+
+function moveLeft(obj){
+  if(obj.flag === false){
+    obj.x -= 5;
+  }
+  else{
+    obj.x -= 3
+  }
+}
+
+function stop(obj){
+  obj.x = obj.x
+  obj.y = obj.y
+}
