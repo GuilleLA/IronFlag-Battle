@@ -1,4 +1,6 @@
 var canvasDiv = document.querySelector(".canvas-container")
+
+//Area de juego
 var myGameArea = {
   canvas: document.createElement("canvas"),
   start: function(){

@@ -1,6 +1,6 @@
 var mainImage = document.querySelector(".main-image");
 var selection = document.querySelector(".selection");
-var randomBallPosition = Math.floor(Math.random()*800)
+var randomBallPosition = Math.floor(Math.random()*800);
 
 window.onload = function() {
 
