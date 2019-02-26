@@ -50,17 +50,17 @@ Player.prototype.draw = function() {
   ctx.fillRect(this.x, this.y, this.width, this.height);
 }
 
-Player.prototype.crashWithBorders = function(obj){
+Player.prototype.crashWithBorders = function(){
   if((this.x + this.width) >= 800){
-    this.x === this.x
+    this.x = 775
   }
-  if((this.y + this.height)) >= 800){
-    this.y === this.y
+  if((this.y + this.height) >= 800){
+    this.y = 775
   }
   if(this.x <= 0){
-    this.x === this.x
+    this.x = 0
   }
   if(this.y <= 0){
-    this.y === this.y
+    this.y = 0
   }
 }

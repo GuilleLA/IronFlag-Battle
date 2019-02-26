@@ -17,14 +17,43 @@ var myGameArea = {
     this.ctx.beginPath();
     this.ctx.arc(800, 800, 100, 0, Math.PI*2, true)
     this.ctx.fill();
-    
     document.body.insertBefore(this.canvas, document.body.childNodes[0]);
+    this.interval = setInterval(updateGameArea, 20);
+  },
+  frame: 0,
+  clearArea: function(){
+    this.ctx = this.canvas.getContext("2d");
+    this.ctx.fillStyle = "lightcoral";
+    this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+    this.ctx.fillStyle = "black";
+    this.ctx.globalAlpha = 0.5;
+    this.ctx.beginPath();
+    this.ctx.arc(0, 0, 100, 0, Math.PI*2, true)
+    this.ctx.fill();
+    this.ctx.beginPath();
+    this.ctx.arc(800, 800, 100, 0, Math.PI*2, true)
+    this.ctx.fill();
   },
 }
 
 
-
-
+//Cambios por frame
+function updateGameArea() {
+  myGameArea.clearArea();
+  playerPT.crashWithBorders();
+  playerFT.crashWithBorders();
+  playerPT.draw();
+  playerFT.draw();
+  flagPT.draw();
+  flagFT.draw();
+  myGameArea.frames +=1;
+  ball1.draw();
+  ball2.draw();
+  ball3.draw();
+  ball4.draw();
+  ball5.draw();
+  ball6.draw();
+}
 
 
 

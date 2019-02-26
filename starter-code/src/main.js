@@ -1,6 +1,7 @@
 var mainImage = document.querySelector(".main-image");
 var selection = document.querySelector(".selection");
 var randomBallPosition = Math.floor(Math.random()*800);
+var balls = [];
 
 window.onload = function() {
 
@@ -13,6 +14,7 @@ window.onload = function() {
   ball4 = new Component(Math.floor(Math.random()*800), 600)
   ball5 = new Component(randomBallPosition, randomBallPosition)
   ball6 = new Component(800-randomBallPosition, randomBallPosition)
+  balls.push(ball1, ball2, ball3, ball4, ball5, ball6);
   playerPT = new Player(25, 25, 50, 100, "down");
   playerFT = new Player(25, 25, 725, 675, "up")
 
@@ -37,27 +39,35 @@ window.onload = function() {
   document.onkeydown = function(e) {
     switch (e.keyCode) {
       case 87:
+        playerPT.facing = "up"
         moveUp(playerPT);
         break;
       case 83:
+        playerPT.facing = "down"
         moveDown(playerPT);
         break;
       case 65:
+        playerPT.facing = "left"
         moveLeft(playerPT);
         break;
       case 68:
+        playerPT.facing = "right"
         moveRight(playerPT);
         break;
       case 38:
+        playerFT.facing = "up"
         moveUp(playerFT);
         break;
       case 40:
+        playerFT.facing = "down"
         moveDown(playerFT);
         break;
       case 37:
+        playerFT.facing = "left"
         moveLeft(playerFT);
         break;
       case 39:
+        playerFT.facing = "right"
         moveRight(playerFT);
         break;
     }
