@@ -53,6 +53,18 @@ function updateGameArea() {
   ball4.draw();
   ball5.draw();
   ball6.draw();
+  ball1.moveComponent();
+  ball2.moveComponent();
+  ball3.moveComponent();
+  ball4.moveComponent();
+  ball5.moveComponent();
+  ball6.moveComponent();
+  ball1.crashWithBorders();
+  ball2.crashWithBorders();
+  ball3.crashWithBorders();
+  ball4.crashWithBorders();
+  ball5.crashWithBorders();
+  ball6.crashWithBorders();
 }
 
 
