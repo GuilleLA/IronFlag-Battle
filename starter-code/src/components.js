@@ -16,6 +16,8 @@ Flags.prototype.draw = function() {
 
 
 //Constructor of killing balls
+var compImg = new Image();
+compImg.src = "images/Boladepinchos.webp"
 function Component(x, y, radius, speedX, speedY){
   this.x = x;
   this.y = y;
@@ -29,25 +31,14 @@ Component.prototype.draw = function() {
   ctx = myGameArea.canvas.getContext("2d");
   ctx.beginPath();
   ctx.arc(this.x, this.y, this.radius, 0, Math.PI*2, true)
-  ctx.fill();
+  ctx.drawImage(compImg, this.x, this.y, 30, 30)
+  
 }
 
 Component.prototype.crashWithBorders = function(){
-  if((this.x + this.radius) >= 800){
+  if((this.x + this.radius) >= 800 || (this.x + this.radius) <= 0 || (this.y + this.radius) >= 800 || (this.y + this.radius) <= 0){
     this.speedX *= -1;
     this.speedY *= -1; 
-  }
-  else if((this.x + this.radius) <= 0){
-    this.speedX *= -1;
-    this.speedY *= -1; 
-  }
-  else if((this.y + this.radius) >= 800){
-    this.speedY *= -1;
-    this.speedX *= -1; 
-  }
-  else if((this.y + this.radius) <= 0){
-    this.speedY *= -1;
-    this.speedX *= -1; 
   }
 }
 
