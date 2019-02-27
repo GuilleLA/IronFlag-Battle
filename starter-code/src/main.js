@@ -36,70 +36,77 @@ window.onload = function() {
   };
 
   //movement definition
-  document.onkeydown = function(e) {
-    switch (e.keyCode) {
-      case 87:
-        playerPT.facing = "up"
-        moveUp(playerPT);
-        break;
-      case 83:
-        playerPT.facing = "down"
-        moveDown(playerPT);
-        break;
-      case 65:
-        playerPT.facing = "left"
-        moveLeft(playerPT);
-        break;
-      case 68:
-        playerPT.facing = "right"
-        moveRight(playerPT);
-        break;
-      case 38:
-        playerFT.facing = "up"
-        moveUp(playerFT);
-        break;
-      case 40:
-        playerFT.facing = "down"
-        moveDown(playerFT);
-        break;
-      case 37:
-        playerFT.facing = "left"
-        moveLeft(playerFT);
-        break;
-      case 39:
-        playerFT.facing = "right"
-        moveRight(playerFT);
-        break;
-    }
+document.onkeydown = function(e) {
+  switch (e.keyCode) {
+    case 87:
+      playerPT.facing = "up"
+      key87 = true;
+      break;
+    case 83:
+      playerPT.facing = "down"
+      key83 = true;
+      break;
+    case 65:
+      playerPT.facing = "left"
+      key65 = true;
+      break;
+    case 68:
+      playerPT.facing = "right"
+      key68 = true;
+      break;
+    case 38:
+      playerFT.facing = "up"
+      key38 = true;
+      break;
+    case 40:
+      playerFT.facing = "down"
+      key40 = true;
+      break;
+    case 37:
+      playerFT.facing = "left"
+      key37 = true;
+      break;
+    case 39:
+      playerFT.facing = "right"
+      key39 = true;
+      break;
   }
+}
 
-  document.onkeyup = function(e) {
-    switch (e.keyCode) {
-      case 87:
-        stop(playerPT);
-        break;
-      case 83:
-        stop(playerPT);
-        break;
-      case 65:
-        stop(playerPT);
-        break;
-      case 68:
-        stop(playerPT);
-        break;
-      case 38:
-        stop(playerFT);
-        break;
-      case 40:
-        stop(playerFT);
-        break;
-      case 37:
-        stop(playerFT);
-        break;
-      case 39:
-        stop(playerFT);
-        break;
-    }
+document.onkeyup = function(e) {
+  switch (e.keyCode) {
+    case 87:
+      playerPT.facing = "up"
+      key87 = false;
+      break;
+    case 83:
+      playerPT.facing = "down"
+      key83 = false;
+      break;
+    case 65:
+      playerPT.facing = "left"
+      key65 = false;
+      break;
+    case 68:
+      playerPT.facing = "right"
+      key68 = false;
+      break;
+    case 38:
+      playerFT.facing = "up"
+      key38 = false;
+      break;
+    case 40:
+      playerFT.facing = "down"
+      key40 = false;
+      break;
+    case 37:
+      playerFT.facing = "left"
+      key37 = false;
+      break;
+    case 39:
+      playerFT.facing = "right"
+      key39 = false;
+      break;
   }
-
+}
 }

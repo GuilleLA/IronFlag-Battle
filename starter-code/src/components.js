@@ -31,7 +31,7 @@ Component.prototype.draw = function() {
   ctx = myGameArea.canvas.getContext("2d");
   ctx.beginPath();
   ctx.arc(this.x, this.y, this.radius, 0, Math.PI*2, true)
-  ctx.drawImage(compImg, this.x, this.y, 30, 30)
+  ctx.drawImage(compImg, this.x, this.y, 40, 40)
   
 }
 
@@ -81,3 +81,16 @@ Player.prototype.crashWithBorders = function(){
     this.y = 0
   }
 }
+
+
+//keys objects for actions
+
+var key87 = false;
+var key83 = false;
+var key65 = false;
+var key68 = false;
+var key38 = false;
+var key40 = false;
+var key37 = false;
+var key39 = false;
+

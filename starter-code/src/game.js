@@ -65,48 +65,72 @@ function updateGameArea() {
   ball4.crashWithBorders();
   ball5.crashWithBorders();
   ball6.crashWithBorders();
+  moveUpPT(playerPT);
+  moveDownPT(playerPT);
+  moveRightPT(playerPT);
+  moveLeftPT(playerPT);
 }
 
 
 
-//players motion
-function moveUp(obj){
-  if(obj.flag === false){
-    obj.y -= 5;
+//playerPT motion
+function moveUpPT(obj){
+  if(key87 === true){
+    if(obj.flag === false){
+      obj.y -= 5;
+    }
+    else{
+      obj.y -= 3
+    }
   }
   else{
-    obj.y -= 3
+    obj.x = obj.x
+    obj.y = obj.y
   }
 }
 
-function moveDown(obj){
-  if(obj.flag === false){
-    obj.y += 5;
+function moveDownPT(obj){
+  if(key83 === true){
+    if(obj.flag === false){
+      obj.y += 5;
+    }
+    else{
+      obj.y += 3
+    }
   }
   else{
-    obj.y += 3
+    obj.x = obj.x
+    obj.y = obj.y
   }
 }
-
-function moveRight(obj){
-  if(obj.flag === false){
-    obj.x += 5;
+function moveRightPT(obj){
+  if(key68 === true){
+    if(obj.flag === false){
+      obj.x += 5;
+    }
+    else{
+      obj.x += 3
+    }
   }
   else{
-    obj.x += 3
+    obj.x = obj.x
+    obj.y = obj.y
   }
 }
 
-function moveLeft(obj){
-  if(obj.flag === false){
-    obj.x -= 5;
+function moveLeftPT(obj){
+  if(key65 === true){
+    if(obj.flag === false){
+      obj.x -= 5;
+    }
+    else{
+      obj.x -= 3
+    }
   }
   else{
-    obj.x -= 3
+    obj.x = obj.x
+    obj.y = obj.y
   }
 }
 
-function stop(obj){
-  obj.x = obj.x
-  obj.y = obj.y
-}
+//playerFT motion
