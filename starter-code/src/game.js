@@ -139,10 +139,10 @@ function moveLeftPT(boolean, obj){
 function creationOfObjects(){
   flagPT = new Flags(20, 20, 20, 20)
   flagFT = new Flags(20, 20, 760, 760)
-  ball1 = new Component(200, Math.floor(Math.random()*800), 20, 0, 4)
-  ball2 = new Component(600, Math.floor(Math.random()*800), 20, 0, 4)
-  ball3 = new Component(Math.floor(Math.random()*800), 200, 20, 4, 0)
-  ball4 = new Component(Math.floor(Math.random()*800), 600, 20, 4, 0)
+  ball1 = new Component(200, Math.floor(Math.random()*780), 20, 0, 4)
+  ball2 = new Component(600, Math.floor(Math.random()*780), 20, 0, 4)
+  ball3 = new Component(Math.floor(Math.random()*780), 200, 20, 4, 0)
+  ball4 = new Component(Math.floor(Math.random()*780), 600, 20, 4, 0)
   ball5 = new Component(randomBallPosition, randomBallPosition, 20, 4, 4)
   ball6 = new Component(800-randomBallPosition, randomBallPosition, 20, 4, -4)
   balls.push(ball1, ball2, ball3, ball4, ball5, ball6);
