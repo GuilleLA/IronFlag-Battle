@@ -39,6 +39,8 @@ var myGameArea = {
 
 //Cambios por frame
 function updateGameArea() {
+  checkCrashWithComponents ();
+
   myGameArea.clearArea();
   playerPT.crashWithBorders();
   playerFT.crashWithBorders();
@@ -47,26 +49,13 @@ function updateGameArea() {
   flagPT.draw();
   flagFT.draw();
   myGameArea.frames +=1;
-  ball1.draw();
-  ball2.draw();
-  ball3.draw();
-  ball4.draw();
-  ball5.draw();
-  ball6.draw();
-  ball1.moveComponent();
-  ball2.moveComponent();
-  ball3.moveComponent();
-  ball4.moveComponent();
-  ball5.moveComponent();
-  ball6.moveComponent();
-  ball1.crashWithBorders();
-  ball2.crashWithBorders();
-  ball3.crashWithBorders();
-  ball4.crashWithBorders();
-  ball5.crashWithBorders();
-  ball6.crashWithBorders();
+  ballOrders();
   playerPTmotion()
   playerFTmotion()
+  playerPT.carryFlag(flagFT);
+  playerFT.carryFlag(flagPT);
+  flagFT.moveFlag(playerPT);
+  flagPT.moveFlag(playerFT);
 }
 
 
@@ -90,7 +79,7 @@ function playerFTmotion(){
 function moveUpPT(boolean, obj){
   if(boolean === true){
     if(obj.flag === false){
-      obj.y -= 5;
+      obj.y -= 4;
     }
     else{
       obj.y -= 3
@@ -105,7 +94,7 @@ function moveUpPT(boolean, obj){
 function moveDownPT(boolean, obj){
   if(boolean === true){
     if(obj.flag === false){
-      obj.y += 5;
+      obj.y += 4;
     }
     else{
       obj.y += 3
@@ -119,7 +108,7 @@ function moveDownPT(boolean, obj){
 function moveRightPT(boolean, obj){
   if(boolean === true){
     if(obj.flag === false){
-      obj.x += 5;
+      obj.x += 4;
     }
     else{
       obj.x += 3
@@ -134,7 +123,7 @@ function moveRightPT(boolean, obj){
 function moveLeftPT(boolean, obj){
   if(boolean === true){
     if(obj.flag === false){
-      obj.x -= 5;
+      obj.x -= 4;
     }
     else{
       obj.x -= 3
@@ -146,5 +135,56 @@ function moveLeftPT(boolean, obj){
   }
 }
 
+//Creation of objects
+function creationOfObjects(){
+  flagPT = new Flags(20, 20, 20, 20)
+  flagFT = new Flags(20, 20, 760, 760)
+  ball1 = new Component(200, Math.floor(Math.random()*800), 20, 0, 4)
+  ball2 = new Component(600, Math.floor(Math.random()*800), 20, 0, 4)
+  ball3 = new Component(Math.floor(Math.random()*800), 200, 20, 4, 0)
+  ball4 = new Component(Math.floor(Math.random()*800), 600, 20, 4, 0)
+  ball5 = new Component(randomBallPosition, randomBallPosition, 20, 4, 4)
+  ball6 = new Component(800-randomBallPosition, randomBallPosition, 20, 4, -4)
+  balls.push(ball1, ball2, ball3, ball4, ball5, ball6);
+  playerPT = new Player(25, 25, 50, 100, "down");
+  playerFT = new Player(25, 25, 725, 675, "up")
+}
 
+function checkCrashWithComponents () {
+  for (i=0;i<balls.length;i++){
+    if (playerFT.crashWithComponents(balls[i]) === true){
+      playerFT.flag = false;
+      playerFT.x = playerFT.initialPosX;
+      playerFT.y = playerFT.initialPosY;
+    }
+  }
 
+  for (i=0;i<balls.length;i++){
+    if (playerPT.crashWithComponents(balls[i]) === true){
+      playerPT.flag = false;
+      playerPT.x = playerPT.initialPosX;
+      playerPT.y = playerPT.initialPosY;
+    }
+  }
+}
+
+function ballOrders(){
+  ball1.draw();
+  ball2.draw();
+  ball3.draw();
+  ball4.draw();
+  ball5.draw();
+  ball6.draw();
+  ball1.moveComponent();
+  ball2.moveComponent();
+  ball3.moveComponent();
+  ball4.moveComponent();
+  ball5.moveComponent();
+  ball6.moveComponent();
+  ball1.crashWithBorders();
+  ball2.crashWithBorders();
+  ball3.crashWithBorders();
+  ball4.crashWithBorders();
+  ball5.crashWithBorders();
+  ball6.crashWithBorders();
+}

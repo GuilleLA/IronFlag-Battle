@@ -1,6 +1,8 @@
 
 //Constructor of flags
 function Flags (width, height, x, y) {
+  this.initialPosX = x;
+  this.initialPosY = y;
   this.width = width;
   this.height = height;
   this.x = x;
@@ -12,6 +14,17 @@ Flags.prototype.draw = function() {
   ctx = myGameArea.canvas.getContext("2d");
   ctx.fillStyle = "blue";
   ctx.fillRect(this.x, this.y, this.width, this.height);
+}
+
+Flags.prototype.moveFlag = function(obj){
+  if(obj.flag === true){
+    this.x = obj.x
+    this.y = obj.y
+  }
+  else{
+    this.x = this.initialPosX;
+    this.y = this.initialPosY;
+  }
 }
 
 
@@ -31,7 +44,7 @@ Component.prototype.draw = function() {
   ctx = myGameArea.canvas.getContext("2d");
   ctx.beginPath();
   ctx.arc(this.x, this.y, this.radius, 0, Math.PI*2, true)
-  ctx.drawImage(compImg, this.x, this.y, 40, 40)
+  ctx.drawImage(compImg, (this.x - this.radius), (this.y - this.radius), 40, 40)
   
 }
 
@@ -45,12 +58,11 @@ Component.prototype.crashWithBorders = function(){
 Component.prototype.moveComponent = function(){
   this.x += this.speedX
   this.y += this.speedY
-
 }
 
 //Constructor player
 function Player (width, height, x, y, facing){
-  this.initalPosX = x;
+  this.initialPosX = x;
   this.initialPosY = y;
   this.width = width;
   this.height = height;
@@ -79,6 +91,29 @@ Player.prototype.crashWithBorders = function(){
   }
   if(this.y <= 0){
     this.y = 0
+  }
+}
+
+Player.prototype.crashWithComponents = function(obj){
+  var distX = (this.width + obj.radius)
+  var distY = (this.length + obj.radius)
+  if (obj.x > this. x && obj.y > this.y && obj.y < this.y + this.height){
+    if(this.x + distX - obj.x >= 0){return true}
+  }
+  else if (obj.x < this. x && obj.y > this.y && obj.y < this.y + this.height){
+    if(obj.x + obj.radius - this.x >= 0){return true}
+  }
+  else if (obj.y > this. y && obj.x > this.x && obj.x < this.x + this.length){
+    if(this.y + distY - obj.y >= 0){return true}
+  }
+  else if (obj.y < this. y && obj.x > this.x && obj.x < this.x + this.length){
+    if(obj.y + obj.radius - this.y >= 0){return true}
+  }
+}
+
+Player.prototype.carryFlag = function(obj){
+  if (this.x <= obj.x + obj.width && this.x + this.width >= obj.x && this.y <= obj.y + obj.height && this.y + this.height >= obj.y){
+    this.flag = true;
   }
 }
 
