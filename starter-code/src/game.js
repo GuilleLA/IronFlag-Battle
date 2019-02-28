@@ -65,17 +65,30 @@ function updateGameArea() {
   ball4.crashWithBorders();
   ball5.crashWithBorders();
   ball6.crashWithBorders();
-  moveUpPT(playerPT);
-  moveDownPT(playerPT);
-  moveRightPT(playerPT);
-  moveLeftPT(playerPT);
+  playerPTmotion()
+  playerFTmotion()
 }
 
 
 
 //playerPT motion
-function moveUpPT(obj){
-  if(key87 === true){
+function playerPTmotion(){
+  moveUpPT(key87, playerPT);
+  moveDownPT(key83, playerPT);
+  moveRightPT(key68, playerPT);
+  moveLeftPT(key65, playerPT);
+}
+
+//playerFT motion
+function playerFTmotion(){
+  moveUpPT(key38, playerFT);
+  moveDownPT(key40, playerFT);
+  moveRightPT(key39, playerFT);
+  moveLeftPT(key37, playerFT);
+}
+//motion definition
+function moveUpPT(boolean, obj){
+  if(boolean === true){
     if(obj.flag === false){
       obj.y -= 5;
     }
@@ -89,8 +102,8 @@ function moveUpPT(obj){
   }
 }
 
-function moveDownPT(obj){
-  if(key83 === true){
+function moveDownPT(boolean, obj){
+  if(boolean === true){
     if(obj.flag === false){
       obj.y += 5;
     }
@@ -103,8 +116,8 @@ function moveDownPT(obj){
     obj.y = obj.y
   }
 }
-function moveRightPT(obj){
-  if(key68 === true){
+function moveRightPT(boolean, obj){
+  if(boolean === true){
     if(obj.flag === false){
       obj.x += 5;
     }
@@ -118,8 +131,8 @@ function moveRightPT(obj){
   }
 }
 
-function moveLeftPT(obj){
-  if(key65 === true){
+function moveLeftPT(boolean, obj){
+  if(boolean === true){
     if(obj.flag === false){
       obj.x -= 5;
     }
@@ -133,4 +146,5 @@ function moveLeftPT(obj){
   }
 }
 
-//playerFT motion
+
+
