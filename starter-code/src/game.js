@@ -100,10 +100,82 @@ function updateGameArea() {
     }
   }
   if (stage === 3){
+    myGameArea.clearArea();
+    myGameArea.frames +=1;
+    bulletsOrders();
+    ballOrders();
+    playerOrders();
+    flagOrders();
+    if(bulletsFT[0]){
+      for (i=0;i<balls.length;i++){
+        if (playerPT.crashWithComponents(bulletsFT[i]) === true){
+          playerPT.flag = false;
+          playerPT.x = playerPT.initialPosX;
+          playerPT.y = playerPT.initialPosY;
+        }
+      }
+    }
+    if(bulletsPT[0]){
+      for (i=0;i<bulletsFT.length;i++){
+        if (playerFT.crashWithComponents(bulletsPT[i]) === true){
+          playerFT.flag = false;
+          playerFT.x = playerFT.initialPosX;
+          playerFT.y = playerFT.initialPosY;
+        }
+      }
+    }
   }
   if (stage === 4){
+    myGameArea.clearArea();
+    myGameArea.frames +=1;
+    bulletsOrders();
+    ballOrders();
+    playerOrders();
+    flagOrders();
+    if(bulletsFT[0]){
+      for (i=0;i<balls.length;i++){
+        if (playerPT.crashWithComponents(bulletsFT[i]) === true){
+          playerPT.flag = false;
+          playerPT.x = playerPT.initialPosX;
+          playerPT.y = playerPT.initialPosY;
+        }
+      }
+    }
+    if(bulletsPT[0]){
+      for (i=0;i<bulletsFT.length;i++){
+        if (playerFT.crashWithComponents(bulletsPT[i]) === true){
+          playerFT.flag = false;
+          playerFT.x = playerFT.initialPosX;
+          playerFT.y = playerFT.initialPosY;
+        }
+      }
+    }
   }
   if (stage === 5){
+    myGameArea.clearArea();
+    myGameArea.frames +=1;
+    bulletsOrders();
+    ballOrders();
+    playerOrders();
+    flagOrders();
+    if(bulletsFT[0]){
+      for (i=0;i<balls.length;i++){
+        if (playerPT.crashWithComponents(bulletsFT[i]) === true){
+          playerPT.flag = false;
+          playerPT.x = playerPT.initialPosX;
+          playerPT.y = playerPT.initialPosY;
+        }
+      }
+    }
+    if(bulletsPT[0]){
+      for (i=0;i<bulletsFT.length;i++){
+        if (playerFT.crashWithComponents(bulletsPT[i]) === true){
+          playerFT.flag = false;
+          playerFT.x = playerFT.initialPosX;
+          playerFT.y = playerFT.initialPosY;
+        }
+      }
+    }
   }    
 }
 
@@ -125,18 +197,35 @@ function creationOfObjects(){
 
 //playerPT motion
 function playerPTmotion(){
-  moveUpPT(key87, playerPT);
-  moveDownPT(key83, playerPT);
-  moveRightPT(key68, playerPT);
-  moveLeftPT(key65, playerPT);
+  if(stage < 5){
+    moveUpPT(key87, playerPT);
+    moveDownPT(key83, playerPT);
+    moveRightPT(key68, playerPT);
+    moveLeftPT(key65, playerPT);
+  }
+  if (stage === 5){
+    moveUpPT(key83, playerPT);
+    moveDownPT(key87, playerPT);
+    moveRightPT(key65, playerPT);
+    moveLeftPT(key68, playerPT);
+  }
+  
 }
 
 //playerFT motion
 function playerFTmotion(){
-  moveUpPT(key38, playerFT);
-  moveDownPT(key40, playerFT);
-  moveRightPT(key39, playerFT);
-  moveLeftPT(key37, playerFT);
+  if(stage < 5){
+    moveUpPT(key38, playerFT);
+    moveDownPT(key40, playerFT);
+    moveRightPT(key39, playerFT);
+    moveLeftPT(key37, playerFT);
+  }
+  if (stage === 5){
+    moveUpPT(key40, playerFT);
+    moveDownPT(key38, playerFT);
+    moveRightPT(key37, playerFT);
+    moveLeftPT(key39, playerFT);
+  }
 }
 
 //motion definition
