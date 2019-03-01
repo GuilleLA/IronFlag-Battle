@@ -2,26 +2,19 @@ var mainImage = document.querySelector(".main-image");
 var selection = document.querySelector(".selection");
 var randomBallPosition = Math.floor(Math.random()*700 + 25);
 var balls = [];
+var bulletsPT = [];
+var bulletsFT = [];
+
 
 window.onload = function() {
 
   creationOfObjects();
-
+  
   //Actions after start
   document.getElementById("start-button").onclick = function() {
     mainImage.classList.add("hide");
     selection.classList.add("hide");
     myGameArea.start();
-    flagPT.draw();
-    flagFT.draw();
-    ball1.draw();
-    ball2.draw();
-    ball3.draw();
-    ball4.draw();
-    ball5.draw();
-    ball6.draw();
-    playerPT.draw();
-    playerFT.draw();
   };
 
   //movement definition
@@ -59,6 +52,13 @@ window.onload = function() {
         playerFT.facing = "right"
         key39 = true;
         break;
+      case 80:
+        key80 = true;
+        break;
+      case 86:
+        bulletCreation(playerPT);
+        key86 = true;
+        break;
     }
   }
 
@@ -88,6 +88,13 @@ window.onload = function() {
       case 39:
         key39 = false;
         break;
+      case 80:
+        key80 = false;
+        break;
+      case 86:
+        key86 = false;
+        break;
     }
   }
 }
+

@@ -1,6 +1,9 @@
 var canvasDiv = document.querySelector(".canvas-container")
 var scorePT = 0;
 var scoreFT = 0;
+var stage = 1;
+
+
 //Area de juego
 var myGameArea = {
   canvas: document.createElement("canvas"),
@@ -37,32 +40,55 @@ var myGameArea = {
     this.ctx.arc(800, 800, 100, 0, Math.PI*2, true)
     this.ctx.fill();
   },
+  stopGame: function(){
+    clearInterval(this.interval);
+  }
 }
 
 
 //Cambios por frame
 function updateGameArea() {
-  checkCrashWithComponents ();
-
   myGameArea.clearArea();
-  playerPT.crashWithBorders();
-  playerFT.crashWithBorders();
-  playerPT.draw();
-  playerFT.draw();
-  flagPT.draw();
-  flagFT.draw();
   myGameArea.frames +=1;
+  bulletsOrders();
   ballOrders();
-  playerPTmotion()
-  playerFTmotion()
-  playerPT.carryFlag(flagFT);
-  playerFT.carryFlag(flagPT);
-  flagFT.moveFlag(playerPT);
-  flagPT.moveFlag(playerFT);
-  flagPT.inEnemyArea(baseFT);
-  flagFT.inEnemyArea(basePT);
+  playerOrders();
+  flagOrders();
+  if(bulletsFT[0]){
+    for (i=0;i<balls.length;i++){
+      if (playerPT.crashWithComponents(bulletsFT[i]) === true){
+        playerPT.flag = false;
+        playerPT.x = playerPT.initialPosX;
+        playerPT.y = playerPT.initialPosY;
+      }
+    }
+  }
+  if(bulletsPT[0]){
+    for (i=0;i<bulletsFT.length;i++){
+      if (playerFT.crashWithComponents(bulletsPT[i]) === true){
+        playerFT.flag = false;
+        playerFT.x = playerFT.initialPosX;
+        playerFT.y = playerFT.initialPosY;
+      }
+    }
+  }
+  
 }
 
+//Creation of objects
+function creationOfObjects(){
+  flagPT = new Flags(20, 20, 20, 20)
+  flagFT = new Flags(20, 20, 760, 760)
+  ball1 = new Component(200, Math.floor(Math.random()*780), 20, 0, 4)
+  ball2 = new Component(600, Math.floor(Math.random()*780), 20, 0, 4)
+  ball3 = new Component(Math.floor(Math.random()*780), 200, 20, 4, 0)
+  ball4 = new Component(Math.floor(Math.random()*780), 600, 20, 4, 0)
+  ball5 = new Component(randomBallPosition, randomBallPosition, 20, 4, 4)
+  ball6 = new Component(800-randomBallPosition, randomBallPosition, 20, 4, -4)
+  balls.push(ball1, ball2, ball3, ball4, ball5, ball6);
+  playerPT = new Player(25, 25, 50, 100, "down");
+  playerFT = new Player(25, 25, 725, 675, "up")
+}
 
 
 //playerPT motion
@@ -80,6 +106,7 @@ function playerFTmotion(){
   moveRightPT(key39, playerFT);
   moveLeftPT(key37, playerFT);
 }
+
 //motion definition
 function moveUpPT(boolean, obj){
   if(boolean === true){
@@ -140,21 +167,6 @@ function moveLeftPT(boolean, obj){
   }
 }
 
-//Creation of objects
-function creationOfObjects(){
-  flagPT = new Flags(20, 20, 20, 20)
-  flagFT = new Flags(20, 20, 760, 760)
-  ball1 = new Component(200, Math.floor(Math.random()*780), 20, 0, 4)
-  ball2 = new Component(600, Math.floor(Math.random()*780), 20, 0, 4)
-  ball3 = new Component(Math.floor(Math.random()*780), 200, 20, 4, 0)
-  ball4 = new Component(Math.floor(Math.random()*780), 600, 20, 4, 0)
-  ball5 = new Component(randomBallPosition, randomBallPosition, 20, 4, 4)
-  ball6 = new Component(800-randomBallPosition, randomBallPosition, 20, 4, -4)
-  balls.push(ball1, ball2, ball3, ball4, ball5, ball6);
-  playerPT = new Player(25, 25, 50, 100, "down");
-  playerFT = new Player(25, 25, 725, 675, "up")
-}
-
 function checkCrashWithComponents () {
   for (i=0;i<balls.length;i++){
     if (playerFT.crashWithComponents(balls[i]) === true){
@@ -173,6 +185,43 @@ function checkCrashWithComponents () {
   }
 }
 
+//Player orders
+function playerOrders () {
+  playerPT.crashWithBorders();
+  playerFT.crashWithBorders();
+  playerPT.draw();
+  playerFT.draw();
+  playerPTmotion()
+  playerFTmotion()
+  playerPT.carryFlag(flagFT);
+  playerFT.carryFlag(flagPT);
+}
+
+//Flag orders
+function flagOrders() {
+  flagFT.moveFlag(playerPT);
+  flagPT.moveFlag(playerFT);
+  flagPT.draw();
+  flagFT.draw();
+  checkFlagInBase();
+}
+
+function checkFlagInBase() {
+  if (flagPT.inEnemyArea(baseFT) === true) {
+    scoreFT++;
+    myGameArea.stopGame();
+    reset();
+    stage++;
+  }
+  if (flagFT.inEnemyArea(basePT) === true) {
+    scorePT++;
+    myGameArea.stopGame();
+    reset();
+    stage++;
+  }
+}
+
+//ball orders 
 function ballOrders(){
   ball1.draw();
   ball2.draw();
@@ -192,4 +241,89 @@ function ballOrders(){
   ball4.crashWithBorders();
   ball5.crashWithBorders();
   ball6.crashWithBorders();
+  checkCrashWithComponents();
 }
+
+
+//Creation of bullets
+function bulletCreation(bool, obj){
+  if (bool === true && obj === playerFT){
+    if(obj.facing === "up"){
+      bulletsFT.push(new Bullet(obj.x + obj.width / 2, obj.y, 0, -7))
+    }
+    if(obj.facing === "down"){
+      bulletsFT.push(new Bullet(obj.x + obj.width / 2, obj.y + obj.height, 0, 6))
+    }
+    if(obj.facing === "left"){
+      bulletsFT.push(new Bullet(obj.x, obj.y + obj.height / 2, -7, 0))
+    }
+    if(obj.facing === "right"){
+      bulletsFT.push(new Bullet(obj.x + obj.width, obj.y + obj.height / 2, 7, 0))
+    }
+  }
+  if (bool === true && obj === playerPT){
+    if(obj.facing === "up"){
+      bulletsPT.push(new Bullet(obj.x + obj.width / 2, obj.y, 0, -7))
+    }
+    if(obj.facing === "down"){
+      bulletsPT.push(new Bullet(obj.x + obj.width / 2, obj.y + obj.height, 0, 6))
+    }
+    if(obj.facing === "left"){
+      bulletsPT.push(new Bullet(obj.x, obj.y + obj.height / 2, -7, 0))
+    }
+    if(obj.facing === "right"){
+      bulletsPT.push(new Bullet(obj.x + obj.width, obj.y + obj.height / 2, 7, 0))
+    }
+  }
+}
+
+function bulletsAppear(){
+  bulletCreation(key86, playerPT);
+  bulletCreation(key80, playerFT);
+}
+
+//Bullets orders
+
+function bulletsOrders(){
+  bulletsAppear()
+  for (i = 0; i<bulletsFT.length; i++){
+    if(bulletsFT[i].crashWithBorders() === false){
+      bulletsFT[i].draw();
+      bulletsFT[i].moveBullet();
+    }
+  
+    else if(bulletsFT[i].crashWithBorders() === true){
+      bulletsFT.shift(bulletsFT[0]);
+      i--;
+    }
+  }
+  for (i = 0; i<bulletsPT.length; i++){
+    if(bulletsPT[i].crashWithBorders() === false){
+      bulletsPT[i].draw();
+      bulletsPT[i].moveBullet();
+    }
+  
+    else if(bulletsPT[i].crashWithBorders() === true){
+      bulletsPT.shift(bulletsPT[0]);
+      i--;
+    }
+  }
+}
+
+
+//reset between stages
+function reset() {
+  playerFT.flag = false;
+  playerFT.x = playerFT.initialPosX;
+  playerFT.y = playerFT.initialPosY;
+  playerFT.facing = "up";
+  playerPT.flag = false;
+  playerPT.x = playerPT.initialPosX;
+  playerPT.y = playerPT.initialPosY;
+  playerPT.facing = "down";
+  flagFT.x = flagFT.initialPosX;
+  flagFT.y = flagFT.initialPosY;
+  flagPT.x = flagPT.initialPosX;
+  flagPT.y = flagPT.initialPosY;
+}
+

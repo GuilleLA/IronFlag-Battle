@@ -28,7 +28,10 @@ Flags.prototype.moveFlag = function(obj){
 
 Flags.prototype.inEnemyArea = function(obj){
   if (obj.x + obj.radius >= this. x && obj.x - obj.radius <= this.x + this.width && obj.y + obj.radius >= this.y && obj.y - obj.radius <= this.y + this.height){
-    return true
+    return true;
+  }
+  else{
+    return false;
   }
 }
 
@@ -48,7 +51,7 @@ function Component(x, y, radius, speedX, speedY){
 Component.prototype.draw = function() {
   ctx = myGameArea.canvas.getContext("2d");
   ctx.beginPath();
-  ctx.arc(this.x, this.y, this.radius, 0, Math.PI*2, true)
+  ctx.arc(this.x, this.y, this.radius, 0, Math.PI*2, true);
   ctx.drawImage(compImg, (this.x - this.radius), (this.y - this.radius), 40, 40)
   
 }
@@ -112,6 +115,35 @@ Player.prototype.carryFlag = function(obj){
 }
 
 
+//Bullets constructor
+
+function Bullet(x, y, speedX, speedY) {
+  this.x = x;
+  this.y = y;
+  this.radius = 5;
+  this.speedX = speedX;
+  this.speedY = speedY;
+}
+
+Bullet.prototype.draw = function() {
+  ctx = myGameArea.canvas.getContext("2d");
+  ctx.fillStyle = "yellow";
+  ctx.beginPath();
+  ctx.arc(this.x, this.y, this.radius, 0, Math.PI*2, true);
+  ctx.fill();
+}
+
+Bullet.prototype.moveBullet = function(){
+  this.x += this.speedX
+  this.y += this.speedY
+}
+
+Bullet.prototype.crashWithBorders = function(){
+  if((this.x + this.radius) >= 800 || (this.x + this.radius) <= 0 || (this.y + this.radius) >= 800 || (this.y + this.radius) <= 0){
+    return true;
+  }
+  else{return false}
+}
 //keys objects for actions
 
 var key87 = false;
@@ -122,6 +154,8 @@ var key38 = false;
 var key40 = false;
 var key37 = false;
 var key39 = false;
+var key80 = false;
+var key86 = false;
 
 
 //base objects
