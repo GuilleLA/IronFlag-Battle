@@ -48,31 +48,63 @@ var myGameArea = {
 
 //Cambios por frame
 function updateGameArea() {
-  myGameArea.clearArea();
-  myGameArea.frames +=1;
-  bulletsOrders();
-  ballOrders();
-  playerOrders();
-  flagOrders();
-  if(bulletsFT[0]){
-    for (i=0;i<balls.length;i++){
-      if (playerPT.crashWithComponents(bulletsFT[i]) === true){
-        playerPT.flag = false;
-        playerPT.x = playerPT.initialPosX;
-        playerPT.y = playerPT.initialPosY;
+  if (stage === 1){
+    myGameArea.clearArea();
+    myGameArea.frames +=1;
+    bulletsOrders();
+    playerOrders();
+    flagOrders();
+    if(bulletsFT[0]){
+      for (i=0;i<balls.length;i++){
+        if (playerPT.crashWithComponents(bulletsFT[i]) === true){
+          playerPT.flag = false;
+          playerPT.x = playerPT.initialPosX;
+          playerPT.y = playerPT.initialPosY;
+        }
+      }
+    }
+    if(bulletsPT[0]){
+      for (i=0;i<bulletsFT.length;i++){
+        if (playerFT.crashWithComponents(bulletsPT[i]) === true){
+          playerFT.flag = false;
+          playerFT.x = playerFT.initialPosX;
+          playerFT.y = playerFT.initialPosY;
+        }
       }
     }
   }
-  if(bulletsPT[0]){
-    for (i=0;i<bulletsFT.length;i++){
-      if (playerFT.crashWithComponents(bulletsPT[i]) === true){
-        playerFT.flag = false;
-        playerFT.x = playerFT.initialPosX;
-        playerFT.y = playerFT.initialPosY;
+  if (stage === 2){
+    myGameArea.clearArea();
+    myGameArea.frames +=1;
+    bulletsOrders();
+    ballOrders();
+    playerOrders();
+    flagOrders();
+    if(bulletsFT[0]){
+      for (i=0;i<balls.length;i++){
+        if (playerPT.crashWithComponents(bulletsFT[i]) === true){
+          playerPT.flag = false;
+          playerPT.x = playerPT.initialPosX;
+          playerPT.y = playerPT.initialPosY;
+        }
+      }
+    }
+    if(bulletsPT[0]){
+      for (i=0;i<bulletsFT.length;i++){
+        if (playerFT.crashWithComponents(bulletsPT[i]) === true){
+          playerFT.flag = false;
+          playerFT.x = playerFT.initialPosX;
+          playerFT.y = playerFT.initialPosY;
+        }
       }
     }
   }
-  
+  if (stage === 3){
+  }
+  if (stage === 4){
+  }
+  if (stage === 5){
+  }    
 }
 
 //Creation of objects
@@ -325,5 +357,10 @@ function reset() {
   flagFT.y = flagFT.initialPosY;
   flagPT.x = flagPT.initialPosX;
   flagPT.y = flagPT.initialPosY;
+  var canvasSel = document.querySelector("canvas")
+  scorePtHtml.innerHTML = scorePT;
+  scoreFtHtml.innerHTML = scoreFT;
+  canvasSel.classList.add("hide");
+  scoreBoard.classList.remove("hide");
 }
 

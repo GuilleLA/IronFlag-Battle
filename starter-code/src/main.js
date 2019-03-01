@@ -1,5 +1,8 @@
 var mainImage = document.querySelector(".main-image");
 var selection = document.querySelector(".selection");
+var scoreBoard = document.querySelector(".score-board");
+var scorePtHtml = document.querySelector(".score-pt");
+var scoreFtHtml = document.querySelector(".score-ft");
 var randomBallPosition = Math.floor(Math.random()*700 + 25);
 var balls = [];
 var bulletsPT = [];
@@ -15,6 +18,24 @@ window.onload = function() {
     mainImage.classList.add("hide");
     selection.classList.add("hide");
     myGameArea.start();
+  };
+
+  document.querySelector(".change-stage").onclick = function() {
+    scoreBoard.classList.add("hide");
+    var canvasSel = document.querySelector("canvas");
+    canvasSel.classList.remove("hide");
+    if (stage === 2){
+      myGameArea.start();
+    }
+    if (stage === 3){
+      myGameArea.start();
+    }
+    if (stage === 4){
+      myGameArea.start();
+    }
+    if (stage === 5){
+      myGameArea.start();
+    }
   };
 
   //movement definition
