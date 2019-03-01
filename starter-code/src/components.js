@@ -1,4 +1,3 @@
-
 //Constructor of flags
 function Flags (width, height, x, y) {
   this.initialPosX = x;
@@ -24,6 +23,12 @@ Flags.prototype.moveFlag = function(obj){
   else{
     this.x = this.initialPosX;
     this.y = this.initialPosY;
+  }
+}
+
+Flags.prototype.inEnemyArea = function(obj){
+  if (obj.x + obj.radius >= this. x && obj.x - obj.radius <= this.x + this.width && obj.y + obj.radius >= this.y && obj.y - obj.radius <= this.y + this.height){
+    return true
   }
 }
 
@@ -95,19 +100,8 @@ Player.prototype.crashWithBorders = function(){
 }
 
 Player.prototype.crashWithComponents = function(obj){
-  var distX = (this.width + obj.radius)
-  var distY = (this.length + obj.radius)
-  if (obj.x > this. x && obj.y > this.y && obj.y < this.y + this.height){
-    if(this.x + distX - obj.x >= 0){return true}
-  }
-  else if (obj.x < this. x && obj.y > this.y && obj.y < this.y + this.height){
-    if(obj.x + obj.radius - this.x >= 0){return true}
-  }
-  else if (obj.y > this. y && obj.x > this.x && obj.x < this.x + this.length){
-    if(this.y + distY - obj.y >= 0){return true}
-  }
-  else if (obj.y < this. y && obj.x > this.x && obj.x < this.x + this.length){
-    if(obj.y + obj.radius - this.y >= 0){return true}
+  if (obj.x + obj.radius >= this. x && obj.x - obj.radius <= this.x + this.width && obj.y + obj.radius >= this.y && obj.y - obj.radius <= this.y + this.height){
+    return true
   }
 }
 
@@ -129,3 +123,16 @@ var key40 = false;
 var key37 = false;
 var key39 = false;
 
+
+//base objects
+var basePT = {
+  x: 0,
+  y: 0,
+  radius: 100,
+}
+
+var baseFT = {
+  x: 800,
+  y: 800,
+  radius: 100,
+}
