@@ -90,6 +90,20 @@ canvas {
   left: 42%;
 }
 
+
+
+
 .hide{
   display: none;
 }
+
+.rotate-canvas {
+  animation-name: rotateMadness;
+  animation-duration: 15s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  
+  }
+  
+  @keyframes rotateMadness { 100% { transform: rotate(360deg); } }
+  }

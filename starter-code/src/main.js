@@ -24,6 +24,7 @@ window.onload = function() {
     scoreBoard.classList.add("hide");
     var canvasSel = document.querySelector("canvas");
     canvasSel.classList.remove("hide");
+    canvasSel.classList.add("rotate-canvas");
     if (stage === 2){
       myGameArea.start();
     }
