@@ -194,8 +194,8 @@ function creationOfObjects(){
   ball5 = new Component(randomBallPosition, randomBallPosition, 20, 4, 4)
   ball6 = new Component(800-randomBallPosition, randomBallPosition, 20, 4, -4)
   balls.push(ball1, ball2, ball3, ball4, ball5, ball6);
-  playerPT = new Player(25, 25, 50, 100, "down");
-  playerFT = new Player(25, 25, 725, 675, "up")
+  playerPT = new Player(50, 50, 50, 100, "down");
+  playerFT = new Player(50, 50, 725, 675, "up")
 }
 
 
@@ -314,8 +314,8 @@ function checkCrashWithComponents () {
 function playerOrders () {
   playerPT.crashWithBorders();
   playerFT.crashWithBorders();
-  playerPT.draw();
-  playerFT.draw();
+  playerPT.draw(tankPTImg);
+  playerFT.draw(tankFTImg);
   playerPTmotion()
   playerFTmotion()
   playerPT.carryFlag(flagFT);

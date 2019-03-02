@@ -15,6 +15,7 @@ function Flags (width, height, x, y) {
 
 Flags.prototype.draw = function(img) {
   ctx = myGameArea.canvas.getContext("2d");
+  ctx.globalAlpha = 1;
   //ctx.fillStyle = "blue";
   //ctx.fillRect(this.x, this.y, this.width, this.height);
   ctx.drawImage(img ,this.x + this.width/2, this.y - this.height, this.width+20, this.height+20);
@@ -85,12 +86,33 @@ function Player (width, height, x, y, facing){
   this.flag = false;
   
 }
-
-Player.prototype.draw = function() {
+var tankPTImg = [new Image(), new Image(), new Image(), new Image()]
+var tankFTImg = [new Image(), new Image(), new Image(), new Image()]
+tankPTImg[0].src = "images/tankPT.png"
+tankPTImg[1].src = "images/tankPTright.png"
+tankPTImg[2].src = "images/tankPTdown.png"
+tankPTImg[3].src = "images/tankPTleft.png"
+tankFTImg[0].src = "images/tankFT.png"
+tankFTImg[1].src = "images/tankFTright.png"
+tankFTImg[2].src = "images/tankFTdown.png"
+tankFTImg[3].src = "images/tankFTleft.png"
+Player.prototype.draw = function(img) {
   ctx = myGameArea.canvas.getContext("2d");
   ctx.globalAlpha = 1;
-  ctx.fillStyle = "yellow";
-  ctx.fillRect(this.x, this.y, this.width, this.height);
+  //ctx.fillStyle = "yellow";
+  //ctx.fillRect(this.x, this.y, this.width, this.height);
+  if (this.facing === "up"){
+    ctx.drawImage(img[0], this.x, this.y, this.width, this.height);
+  }
+  if (this.facing === "right"){
+    ctx.drawImage(img[1], this.x, this.y, this.width, this.height);
+  }
+  if (this.facing === "down"){
+    ctx.drawImage(img[2], this.x, this.y, this.width, this.height);
+  }
+  if (this.facing === "left"){
+    ctx.drawImage(img[3], this.x, this.y, this.width, this.height);
+  }
 }
 
 Player.prototype.crashWithBorders = function(){
