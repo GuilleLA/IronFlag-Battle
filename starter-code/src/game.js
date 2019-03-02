@@ -2,6 +2,8 @@ var canvasDiv = document.querySelector(".canvas-container")
 var scorePT = 0;
 var scoreFT = 0;
 var stage = 1;
+var gamebkg = new Image()
+gamebkg.src ="images/gamebkg.jpg"
 
 
 //Area de juego
@@ -12,7 +14,8 @@ var myGameArea = {
     this.canvas.height = 800;
     this.ctx = this.canvas.getContext("2d");
     this.ctx.fillStyle = "lightcoral";
-    this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+    this.ctx.drawImage(gamebkg, 0, 0, this.canvas.width, this.canvas.height);
+    //this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
     this.ctx.fillStyle = "white";
     this.ctx.globalAlpha = 0.5;
     this.ctx.beginPath();
@@ -29,7 +32,8 @@ var myGameArea = {
   clearArea: function(){
     this.ctx = this.canvas.getContext("2d");
     this.ctx.fillStyle = "lightcoral";
-    this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+    this.ctx.drawImage(gamebkg, 0, 0, this.canvas.width, this.canvas.height);
+    //this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
     this.ctx.fillStyle = "white";
     this.ctx.globalAlpha = 0.5;
     this.ctx.beginPath();
@@ -51,11 +55,11 @@ function updateGameArea() {
   if (stage === 1){
     myGameArea.clearArea();
     myGameArea.frames +=1;
-    bulletsOrders();
     playerOrders();
+    bulletsOrders();
     flagOrders();
     if(bulletsFT[0]){
-      for (i=0;i<balls.length;i++){
+      for (i=0;i<bulletsFT.length;i++){
         if (playerPT.crashWithComponents(bulletsFT[i]) === true){
           playerPT.flag = false;
           playerPT.x = playerPT.initialPosX;
@@ -64,7 +68,7 @@ function updateGameArea() {
       }
     }
     if(bulletsPT[0]){
-      for (i=0;i<bulletsFT.length;i++){
+      for (i=0;i<bulletsPT.length;i++){
         if (playerFT.crashWithComponents(bulletsPT[i]) === true){
           playerFT.flag = false;
           playerFT.x = playerFT.initialPosX;
@@ -322,8 +326,8 @@ function playerOrders () {
 function flagOrders() {
   flagFT.moveFlag(playerPT);
   flagPT.moveFlag(playerFT);
-  flagPT.draw();
-  flagFT.draw();
+  flagPT.draw(flagImgPT);
+  flagFT.draw(flagImgFT);
   checkFlagInBase();
 }
 
@@ -399,25 +403,14 @@ function bulletCreation(bool, obj){
 }
 
 function bulletsAppear(){
-  bulletCreation(key86, playerPT);
   bulletCreation(key80, playerFT);
+  bulletCreation(key86, playerPT);
 }
 
 //Bullets orders
 
 function bulletsOrders(){
   bulletsAppear()
-  for (i = 0; i<bulletsFT.length; i++){
-    if(bulletsFT[i].crashWithBorders() === false){
-      bulletsFT[i].draw();
-      bulletsFT[i].moveBullet();
-    }
-  
-    else if(bulletsFT[i].crashWithBorders() === true){
-      bulletsFT.shift(bulletsFT[0]);
-      i--;
-    }
-  }
   for (i = 0; i<bulletsPT.length; i++){
     if(bulletsPT[i].crashWithBorders() === false){
       bulletsPT[i].draw();
@@ -426,6 +419,17 @@ function bulletsOrders(){
   
     else if(bulletsPT[i].crashWithBorders() === true){
       bulletsPT.shift(bulletsPT[0]);
+      i--;
+    }
+  }
+  for (i = 0; i<bulletsFT.length; i++){
+    if(bulletsFT[i].crashWithBorders() === false){
+      bulletsFT[i].draw();
+      bulletsFT[i].moveBullet();
+    }
+  
+    else if(bulletsFT[i].crashWithBorders() === true){
+      bulletsFT.shift(bulletsFT[0]);
       i--;
     }
   }

@@ -1,4 +1,8 @@
 //Constructor of flags
+var flagImgPT = new Image()
+var flagImgFT = new Image()
+flagImgPT.src = "images/flagPT.ico"
+flagImgFT.src = "images/flagFT.png"
 function Flags (width, height, x, y) {
   this.initialPosX = x;
   this.initialPosY = y;
@@ -9,10 +13,11 @@ function Flags (width, height, x, y) {
   
 }
 
-Flags.prototype.draw = function() {
+Flags.prototype.draw = function(img) {
   ctx = myGameArea.canvas.getContext("2d");
-  ctx.fillStyle = "blue";
-  ctx.fillRect(this.x, this.y, this.width, this.height);
+  //ctx.fillStyle = "blue";
+  //ctx.fillRect(this.x, this.y, this.width, this.height);
+  ctx.drawImage(img ,this.x + this.width/2, this.y - this.height, this.width+20, this.height+20);
 }
 
 Flags.prototype.moveFlag = function(obj){
@@ -27,7 +32,7 @@ Flags.prototype.moveFlag = function(obj){
 }
 
 Flags.prototype.inEnemyArea = function(obj){
-  if (obj.x + obj.radius >= this. x && obj.x - obj.radius <= this.x + this.width && obj.y + obj.radius >= this.y && obj.y - obj.radius <= this.y + this.height){
+  if (obj.x + obj.radius >= this.x && obj.x - obj.radius <= this.x + this.width && obj.y + obj.radius >= this.y && obj.y - obj.radius <= this.y + this.height){
     return true;
   }
   else{
@@ -83,6 +88,7 @@ function Player (width, height, x, y, facing){
 
 Player.prototype.draw = function() {
   ctx = myGameArea.canvas.getContext("2d");
+  ctx.globalAlpha = 1;
   ctx.fillStyle = "yellow";
   ctx.fillRect(this.x, this.y, this.width, this.height);
 }
