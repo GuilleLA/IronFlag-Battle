@@ -418,7 +418,7 @@ function bulletsOrders(){
     }
   
     else if(bulletsPT[i].crashWithBorders() === true){
-      bulletsPT.shift(bulletsPT[0]);
+      bulletsPT.splice(i,1);
       i--;
     }
   }
@@ -429,7 +429,7 @@ function bulletsOrders(){
     }
   
     else if(bulletsFT[i].crashWithBorders() === true){
-      bulletsFT.shift(bulletsFT[0]);
+      bulletsFT.splice(i,1);
       i--;
     }
   }
