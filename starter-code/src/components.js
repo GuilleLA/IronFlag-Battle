@@ -56,6 +56,7 @@ function Component(x, y, radius, speedX, speedY){
 
 Component.prototype.draw = function() {
   ctx = myGameArea.canvas.getContext("2d");
+  ctx.globalAlpha = 1;
   ctx.beginPath();
   ctx.arc(this.x, this.y, this.radius, 0, Math.PI*2, true);
   ctx.drawImage(compImg, (this.x - this.radius), (this.y - this.radius), 40, 40)
@@ -117,10 +118,10 @@ Player.prototype.draw = function(img) {
 
 Player.prototype.crashWithBorders = function(){
   if((this.x + this.width) >= 800){
-    this.x = 775
+    this.x = 750
   }
   if((this.y + this.height) >= 800){
-    this.y = 775
+    this.y = 750
   }
   if(this.x <= 0){
     this.x = 0

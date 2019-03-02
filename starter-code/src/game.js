@@ -335,14 +335,14 @@ function checkFlagInBase() {
   if (flagPT.inEnemyArea(baseFT) === true) {
     scoreFT++;
     myGameArea.stopGame();
-    reset();
     stage++;
+    reset();
   }
   if (flagFT.inEnemyArea(basePT) === true) {
     scorePT++;
     myGameArea.stopGame();
-    reset();
     stage++;
+    reset();
   }
 }
 
@@ -438,22 +438,46 @@ function bulletsOrders(){
 
 //reset between stages
 function reset() {
-  playerFT.flag = false;
-  playerFT.x = playerFT.initialPosX;
-  playerFT.y = playerFT.initialPosY;
-  playerFT.facing = "up";
-  playerPT.flag = false;
-  playerPT.x = playerPT.initialPosX;
-  playerPT.y = playerPT.initialPosY;
-  playerPT.facing = "down";
-  flagFT.x = flagFT.initialPosX;
-  flagFT.y = flagFT.initialPosY;
-  flagPT.x = flagPT.initialPosX;
-  flagPT.y = flagPT.initialPosY;
-  var canvasSel = document.querySelector("canvas")
-  scorePtHtml.innerHTML = scorePT;
-  scoreFtHtml.innerHTML = scoreFT;
-  canvasSel.classList.add("hide");
-  scoreBoard.classList.remove("hide");
+  if (stage < 6){
+    playerFT.flag = false;
+    playerFT.x = playerFT.initialPosX;
+    playerFT.y = playerFT.initialPosY;
+    playerFT.facing = "up";
+    playerPT.flag = false;
+    playerPT.x = playerPT.initialPosX;
+    playerPT.y = playerPT.initialPosY;
+    playerPT.facing = "down";
+    flagFT.x = flagFT.initialPosX;
+    flagFT.y = flagFT.initialPosY;
+    flagPT.x = flagPT.initialPosX;
+    flagPT.y = flagPT.initialPosY;
+    var canvasSel = document.querySelector("canvas")
+    scorePtHtml.innerHTML = scorePT;
+    scoreFtHtml.innerHTML = scoreFT;
+    canvasSel.classList.add("hide");
+    scoreBoard.classList.remove("hide");
+  }
+  else{
+    playerFT.flag = false;
+    playerFT.x = playerFT.initialPosX;
+    playerFT.y = playerFT.initialPosY;
+    playerFT.facing = "up";
+    playerPT.flag = false;
+    playerPT.x = playerPT.initialPosX;
+    playerPT.y = playerPT.initialPosY;
+    playerPT.facing = "down";
+    flagFT.x = flagFT.initialPosX;
+    flagFT.y = flagFT.initialPosY;
+    flagPT.x = flagPT.initialPosX;
+    flagPT.y = flagPT.initialPosY;
+    var canvasSel = document.querySelector("canvas");
+    canvasSel.classList.add("hide");
+    if (scorePT > scoreFT){winner.innerHTML = "Part-time Ironhacker won";}
+    if (scorePT < scoreFT){winner.innerHTML = "Full-time Ironhacker won";}
+    finalScreen.classList.remove("hide");
+    stage = 1;
+    scorePT = 0;
+    scoreFT = 0;
+  }
 }
 

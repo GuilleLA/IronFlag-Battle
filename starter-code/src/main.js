@@ -3,6 +3,8 @@ var selection = document.querySelector(".selection");
 var scoreBoard = document.querySelector(".score-board");
 var scorePtHtml = document.querySelector(".score-pt");
 var scoreFtHtml = document.querySelector(".score-ft");
+var finalScreen = document.querySelector(".final-screen")
+var winner = document.querySelector(".winner")
 var randomBallPosition = Math.floor(Math.random()*700 + 25);
 var balls = [];
 var bulletsPT = [];
@@ -38,6 +40,13 @@ window.onload = function() {
       myGameArea.start();
     }
   };
+
+  document.querySelector(".final-button").onclick = function() {
+    finalScreen.classList.add("hide");
+    var canvasSel = document.querySelector("canvas");
+    canvasSel.classList.remove("rotate-canvas hide");
+    myGameArea.start();
+  }
 
   //movement definition
   document.onkeydown = function(e) {
