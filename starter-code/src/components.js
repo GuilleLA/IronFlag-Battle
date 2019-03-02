@@ -16,8 +16,6 @@ function Flags (width, height, x, y) {
 Flags.prototype.draw = function(img) {
   ctx = myGameArea.canvas.getContext("2d");
   ctx.globalAlpha = 1;
-  //ctx.fillStyle = "blue";
-  //ctx.fillRect(this.x, this.y, this.width, this.height);
   ctx.drawImage(img ,this.x + this.width/2, this.y - this.height, this.width+20, this.height+20);
 }
 
@@ -100,8 +98,6 @@ tankFTImg[3].src = "images/tankFTleft.png"
 Player.prototype.draw = function(img) {
   ctx = myGameArea.canvas.getContext("2d");
   ctx.globalAlpha = 1;
-  //ctx.fillStyle = "yellow";
-  //ctx.fillRect(this.x, this.y, this.width, this.height);
   if (this.facing === "up"){
     ctx.drawImage(img[0], this.x, this.y, this.width, this.height);
   }
