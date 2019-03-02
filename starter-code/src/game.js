@@ -452,8 +452,8 @@ function reset() {
     flagPT.x = flagPT.initialPosX;
     flagPT.y = flagPT.initialPosY;
     var canvasSel = document.querySelector("canvas")
-    scorePtHtml.innerHTML = scorePT;
-    scoreFtHtml.innerHTML = scoreFT;
+    scorePtHtml.innerHTML = "<p>Part-time Ironhacker</p>" + scorePT;
+    scoreFtHtml.innerHTML = "<p>Full-time Ironhacker</p>" + scoreFT;
     canvasSel.classList.add("hide");
     scoreBoard.classList.remove("hide");
   }

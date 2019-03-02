@@ -68,6 +68,7 @@ canvas {
 
 .score-board {
   border: 2px black solid;
+  border-radius: 1%;
   display: flex;
   flex-direction: row;
   width: 70%;
@@ -79,10 +80,15 @@ canvas {
   width: 50%;
   height: 800px;
   color: wheat;
-  font-size: 50rem;
+  font-size: 40rem;
   font-weight: 700;
   text-align: center;
 }
+
+.score-board p {
+  font-size: 5rem;
+}
+
 .change-stage{
   width: 300px;
   height: 100px;
