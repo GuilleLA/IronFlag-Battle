@@ -50,6 +50,7 @@ var myGameArea = {
 function updateGameArea() {
   if (stage === 1){
     myGameArea.clearArea();
+    mapOrders();
     myGameArea.frames +=1;
     playerOrders();
     bulletsOrders();
@@ -85,7 +86,7 @@ function updateGameArea() {
     playerOrders();
     flagOrders();
     if(bulletsFT[0]){
-      for (i=0;i<balls.length;i++){
+      for (i=0;i<bulletsFT.length;i++){
         if (playerPT.crashWithComponents(bulletsFT[i]) === true){
           playerPT.flag = false;
           playerPT.x = playerPT.initialPosX;
@@ -94,7 +95,7 @@ function updateGameArea() {
       }
     }
     if(bulletsPT[0]){
-      for (i=0;i<bulletsFT.length;i++){
+      for (i=0;i<bulletsPT.length;i++){
         if (playerFT.crashWithComponents(bulletsPT[i]) === true){
           playerFT.flag = false;
           playerFT.x = playerFT.initialPosX;
@@ -111,7 +112,7 @@ function updateGameArea() {
     playerOrders();
     flagOrders();
     if(bulletsFT[0]){
-      for (i=0;i<balls.length;i++){
+      for (i=0;i<bulletsFT.length;i++){
         if (playerPT.crashWithComponents(bulletsFT[i]) === true){
           playerPT.flag = false;
           playerPT.x = playerPT.initialPosX;
@@ -120,7 +121,7 @@ function updateGameArea() {
       }
     }
     if(bulletsPT[0]){
-      for (i=0;i<bulletsFT.length;i++){
+      for (i=0;i<bulletsPT.length;i++){
         if (playerFT.crashWithComponents(bulletsPT[i]) === true){
           playerFT.flag = false;
           playerFT.x = playerFT.initialPosX;
@@ -137,7 +138,7 @@ function updateGameArea() {
     playerOrders();
     flagOrders();
     if(bulletsFT[0]){
-      for (i=0;i<balls.length;i++){
+      for (i=0;i<bulletsFT.length;i++){
         if (playerPT.crashWithComponents(bulletsFT[i]) === true){
           playerPT.flag = false;
           playerPT.x = playerPT.initialPosX;
@@ -146,7 +147,7 @@ function updateGameArea() {
       }
     }
     if(bulletsPT[0]){
-      for (i=0;i<bulletsFT.length;i++){
+      for (i=0;i<bulletsPT.length;i++){
         if (playerFT.crashWithComponents(bulletsPT[i]) === true){
           playerFT.flag = false;
           playerFT.x = playerFT.initialPosX;
@@ -194,6 +195,12 @@ function creationOfObjects(){
   ball5 = new Component(randomBallPosition, randomBallPosition, 20, 4, 4)
   ball6 = new Component(800-randomBallPosition, randomBallPosition, 20, 4, -4)
   balls.push(ball1, ball2, ball3, ball4, ball5, ball6);
+  map1 = new Map( 275, 0, 0, 25, 200);
+  map2 = new Map( 0, 300, 0, 200, 25);
+  map3 = new Map( 400, 400, 40, 0, 0);
+  map4 = new Map( 500, 600, 0, 25, 200);
+  map5 = new Map( 600, 475, 0, 200, 25);
+  map.push(map1, map2, map3, map4, map5);
   playerPT = new Player(50, 50, 50, 100, "down");
   playerFT = new Player(50, 50, 725, 675, "up")
 }
@@ -405,6 +412,7 @@ function bulletCreation(bool, obj){
 function bulletsAppear(){
   bulletCreation(key80, playerFT);
   bulletCreation(key86, playerPT);
+  key80 = key86 = false;
 }
 
 //Bullets orders
@@ -433,6 +441,15 @@ function bulletsOrders(){
       i--;
     }
   }
+}
+
+//Map orders
+function mapOrders(){
+  map1.draw();
+  map2.draw();
+  map3.draw();
+  map4.draw();
+  map5.draw();
 }
 
 

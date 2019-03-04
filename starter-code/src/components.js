@@ -139,6 +139,19 @@ Player.prototype.carryFlag = function(obj){
   }
 }
 
+Player.prototype.crashWithMap = function(obj){
+  if(obj.radius = 0){
+    if (obj.x + obj.radius >= this. x && obj.x - obj.radius <= this.x + this.width && obj.y + obj.radius >= this.y && obj.y - obj.radius <= this.y + this.height){
+      return true
+    }
+  }
+  if(obj.radius != 0){
+    if (this.x <= obj.x + obj.width && this.x + this.width >= obj.x && this.y <= obj.y + obj.height && this.y + this.height >= obj.y){
+      this.flag = true;
+    }
+  }
+}
+
 
 //Bullets constructor
 
@@ -169,6 +182,30 @@ Bullet.prototype.crashWithBorders = function(){
   }
   else{return false}
 }
+//creates the map of second stage
+function Map(x, y, radius, width, height){
+  this.x = x;
+  this.y = y;
+  this.radius = radius;
+  this.width = width;
+  this.height = height;
+}
+
+Map.prototype.draw = function(){
+  if (this.radius === 0){
+    ctx = myGameArea.canvas.getContext("2d");
+    ctx.fillStyle = "black";
+    ctx.globalAlpha = 1;
+    ctx.beginPath();
+    ctx.fillRect(this.x, this.y, this.width, this.height)
+  }
+  if (this.radius != 0){
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.radius, 0, Math.PI*2, true);
+    ctx.fill();
+  }
+}
+
 //keys objects for actions
 
 var key87 = false;

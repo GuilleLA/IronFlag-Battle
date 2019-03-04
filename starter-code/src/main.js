@@ -9,6 +9,9 @@ var randomBallPosition = Math.floor(Math.random()*700 + 25);
 var balls = [];
 var bulletsPT = [];
 var bulletsFT = [];
+var map = [];
+var time;
+var time2;
 
 
 window.onload = function() {
@@ -44,7 +47,8 @@ window.onload = function() {
   document.querySelector(".final-button").onclick = function() {
     finalScreen.classList.add("hide");
     var canvasSel = document.querySelector("canvas");
-    canvasSel.classList.remove("rotate-canvas hide");
+    canvasSel.classList.remove("rotate-canvas");
+    canvasSel.classList.remove("hide");
     myGameArea.start();
   }
 
@@ -84,11 +88,12 @@ window.onload = function() {
         key39 = true;
         break;
       case 80:
-        key80 = true;
+      if(!time){ key80 = true;
+      time = setTimeout(_=> time = undefined, 500)}
         break;
       case 86:
-        bulletCreation(playerPT);
-        key86 = true;
+      if(!time2) {key86 = true;
+      time2 = setTimeout(_=> time2 = undefined, 500)}
         break;
     }
   }
