@@ -197,10 +197,12 @@ function creationOfObjects(){
   balls.push(ball1, ball2, ball3, ball4, ball5, ball6);
   map1 = new Map( 275, 0, 0, 25, 200);
   map2 = new Map( 0, 300, 0, 200, 25);
-  map3 = new Map( 400, 400, 40, 0, 0);
-  map4 = new Map( 500, 600, 0, 25, 200);
-  map5 = new Map( 600, 475, 0, 200, 25);
-  map.push(map1, map2, map3, map4, map5);
+  map3 = new Map( 200, 600, 40, 0, 0);
+  map4 = new Map( 400, 400, 40, 0, 0);
+  map5 = new Map( 600, 200, 40, 0, 0);
+  map6 = new Map( 500, 600, 0, 25, 200);
+  map7 = new Map( 600, 475, 0, 200, 25);
+  map.push(map1, map2, map3, map4, map5, map6, map7);
   playerPT = new Player(50, 50, 50, 100, "down");
   playerFT = new Player(50, 50, 725, 675, "up")
 }
@@ -450,8 +452,15 @@ function mapOrders(){
   map3.draw();
   map4.draw();
   map5.draw();
+  map6.draw();
+  map7.draw();
+  for (i=0;i<map.length;i++){
+    if(playerFT.crashWithMap(map[i]) && playerFT.x+playerFT.width >= map[i].x && playerFT.x <= map[i].x){playerFT.x -= 5}
+    if(playerFT.crashWithMap(map[i]) && playerFT.x <= map[i].x+map[i].width && playerFT.x+playerFT.width >= map[i].x+map[i].width){playerFT.x += 5}
+    if(playerFT.crashWithMap(map[i]) && playerFT.y+playerFT.height >= map[i].y && playerFT.y <= map[i].y){playerFT.y -= 5}
+    if(playerFT.crashWithMap(map[i]) && playerFT.y <= map[i].y+map[i].height && playerFT.y+playerFT.height >= map[i].y+map[i].height){playerFT.y += 5}
+  }
 }
-
 
 //reset between stages
 function reset() {

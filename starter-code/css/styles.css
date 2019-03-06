@@ -29,27 +29,100 @@ body {
 }
 
 .main-image {
+  background-image: url("../images/paisaje\ .gif");
+  background-size: cover;
+  background-position: right bottom;
   display: flex;
   flex-direction: row;
   width: 100%;
   height: 500px;
-  border: 2px black solid;
+}
+
+.logo {
+  position: absolute;
+  left: 43%;
 }
 
 .selection {
+  padding-top: 10px;
   display: flex;
   flex-direction: row;
   width: 100%;
-  border: 2px black solid;
 }
 
 .selection div {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;  
   width: 33%;
-  height: 300px;
-  border: 2px black solid;
+  height: 365px;
 }
 
-.selection button {
+.playerPT{
+  width: 33%;
+  display: block;
+  margin: auto;
+}
+
+.buttonPT{
+  width: 33%;
+  margin: auto;
+  width: 10%;
+  height: 20%;
+  background-color: aqua;
+  border-radius: 100%;
+  letter-spacing: 10px;
+}
+
+.buttonPT img{
+  width: 50%;
+  height: auto;
+}
+
+div .rolePT {
+  display: block;
+  padding-top: 15px;
+  width: 100%;
+  height: 50px;
+  font-size: 2rem;
+  font-weight: 700;
+  color: wheat;
+  text-align: center;
+}
+
+.playerFT{
+  display: block;
+  margin: 0 auto;
+}
+
+.buttonFT{
+  width: 33%;
+  margin: auto;
+  width: 10%;
+  height: 20%;
+  background-color: aqua;
+  border-radius: 100%;
+  letter-spacing: 10px;
+}
+
+.buttonFT img{
+  width: 50%;
+  height: auto;
+}
+
+div .roleFT {
+  display: block;
+  padding-top: 15px;
+  width: 100%;
+  height: 50px;
+  font-size: 2rem;
+  font-weight: 700;
+  color: wheat;
+  text-align: center;
+}
+
+#start-button {
+  margin: auto;
   width: 100%;
   height: 50%;
   background-color: aqua;
@@ -141,6 +214,10 @@ canvas {
 
 
 .hide{
+  display: none;
+}
+
+div .hide{
   display: none;
 }
 

@@ -140,14 +140,14 @@ Player.prototype.carryFlag = function(obj){
 }
 
 Player.prototype.crashWithMap = function(obj){
-  if(obj.radius = 0){
-    if (obj.x + obj.radius >= this. x && obj.x - obj.radius <= this.x + this.width && obj.y + obj.radius >= this.y && obj.y - obj.radius <= this.y + this.height){
+  if(obj.radius === 0){
+    if (this.x <= obj.x + obj.width && this.x + this.width >= obj.x && this.y <= obj.y + obj.height && this.y + this.height >= obj.y){
       return true
     }
   }
   if(obj.radius != 0){
-    if (this.x <= obj.x + obj.width && this.x + this.width >= obj.x && this.y <= obj.y + obj.height && this.y + this.height >= obj.y){
-      this.flag = true;
+    if (obj.x + obj.radius >= this. x && obj.x - obj.radius <= this.x + this.width && obj.y + obj.radius >= this.y && obj.y - obj.radius <= this.y + this.height){
+      return true;
     }
   }
 }
