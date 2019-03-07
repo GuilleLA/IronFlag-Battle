@@ -131,7 +131,6 @@ canvas {
 }
 
 .score-board {
-  border: 2px black solid;
   border-radius: 1%;
   display: flex;
   flex-direction: row;
@@ -140,7 +139,6 @@ canvas {
 }
 
 .score-board div {
-  border: 2px black solid;
   width: 50%;
   height: 800px;
   color: wheat;
@@ -217,6 +215,7 @@ div .hide{
   animation-duration: 15s;
   animation-iteration-count: infinite;
   animation-timing-function: linear;
+  overflow: hidden;
   
   }
   
