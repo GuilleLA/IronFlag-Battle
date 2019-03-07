@@ -50,7 +50,6 @@ var myGameArea = {
 function updateGameArea() {
   if (stage === 1){
     myGameArea.clearArea();
-    mapOrders();
     myGameArea.frames +=1;
     playerOrders();
     bulletsOrders();
@@ -81,8 +80,8 @@ function updateGameArea() {
   if (stage === 2){
     myGameArea.clearArea();
     myGameArea.frames +=1;
+    mapOrders();
     bulletsOrders();
-    ballOrders();
     playerOrders();
     flagOrders();
     if(bulletsFT[0]){
@@ -107,6 +106,7 @@ function updateGameArea() {
   if (stage === 3){
     myGameArea.clearArea();
     myGameArea.frames +=1;
+    mapOrders();
     bulletsOrders();
     ballOrders();
     playerOrders();
@@ -133,6 +133,7 @@ function updateGameArea() {
   if (stage === 4){
     myGameArea.clearArea();
     myGameArea.frames +=1;
+    mapOrders();
     bulletsOrders();
     ballOrders();
     playerOrders();
@@ -159,6 +160,7 @@ function updateGameArea() {
   if (stage === 5){
     myGameArea.clearArea();
     myGameArea.frames +=1;
+    mapOrders();
     bulletsOrders();
     ballOrders();
     playerOrders();
@@ -455,10 +457,26 @@ function mapOrders(){
   map6.draw();
   map7.draw();
   for (i=0;i<map.length;i++){
-    if(playerFT.crashWithMap(map[i]) && playerFT.x+playerFT.width >= map[i].x && playerFT.x <= map[i].x){playerFT.x -= 5}
-    if(playerFT.crashWithMap(map[i]) && playerFT.x <= map[i].x+map[i].width && playerFT.x+playerFT.width >= map[i].x+map[i].width){playerFT.x += 5}
-    if(playerFT.crashWithMap(map[i]) && playerFT.y+playerFT.height >= map[i].y && playerFT.y <= map[i].y){playerFT.y -= 5}
-    if(playerFT.crashWithMap(map[i]) && playerFT.y <= map[i].y+map[i].height && playerFT.y+playerFT.height >= map[i].y+map[i].height){playerFT.y += 5}
+    if(map[i].radius === 0){
+      if(playerFT.crashWithMap(map[i]) && playerFT.x+playerFT.width >= map[i].x && playerFT.x <= map[i].x){playerFT.x -= 5}
+      if(playerFT.crashWithMap(map[i]) && playerFT.x <= map[i].x+map[i].width && playerFT.x+playerFT.width >= map[i].x+map[i].width){playerFT.x += 5}
+      if(playerFT.crashWithMap(map[i]) && playerFT.y+playerFT.height >= map[i].y && playerFT.y <= map[i].y){playerFT.y -= 5}
+      if(playerFT.crashWithMap(map[i]) && playerFT.y <= map[i].y+map[i].height && playerFT.y+playerFT.height >= map[i].y+map[i].height){playerFT.y += 5}
+      if(playerPT.crashWithMap(map[i]) && playerPT.x+playerPT.width >= map[i].x && playerPT.x <= map[i].x){playerPT.x -= 5}
+      if(playerPT.crashWithMap(map[i]) && playerPT.x <= map[i].x+map[i].width && playerPT.x+playerPT.width >= map[i].x+map[i].width){playerPT.x += 5}
+      if(playerPT.crashWithMap(map[i]) && playerPT.y+playerPT.height >= map[i].y && playerPT.y <= map[i].y){playerPT.y -= 5}
+      if(playerPT.crashWithMap(map[i]) && playerPT.y <= map[i].y+map[i].height && playerPT.y+playerPT.height >= map[i].y+map[i].height){playerPT.y += 5}
+    }
+    if(map[i].radius != 0){
+      if(playerFT.crashWithMap(map[i]) && playerFT.x >= map[i].x) {playerFT.x += 5}
+      if(playerFT.crashWithMap(map[i]) && playerFT.y >= map[i].y) {playerFT.y += 5}
+      if(playerFT.crashWithMap(map[i]) && playerFT.x+playerFT.width <= map[i].x) {playerFT.x -= 5}
+      if(playerFT.crashWithMap(map[i]) && playerFT.y+playerFT.height <= map[i].y) {playerFT.y -= 5}
+      if(playerPT.crashWithMap(map[i]) && playerPT.x >= map[i].x) {playerPT.x += 5}
+      if(playerPT.crashWithMap(map[i]) && playerPT.y >= map[i].y) {playerPT.y += 5}
+      if(playerPT.crashWithMap(map[i]) && playerPT.x+playerPT.width <= map[i].x) {playerPT.x -= 5}
+      if(playerPT.crashWithMap(map[i]) && playerPT.y+playerPT.height <= map[i].y) {playerPT.y -= 5}
+    }
   }
 }
 
