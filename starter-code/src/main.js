@@ -1,3 +1,4 @@
+var bodysel = document.querySelector("body");
 var mainImage = document.querySelector(".main-image");
 var selection = document.querySelector(".selection");
 var scoreBoard = document.querySelector(".score-board");
@@ -15,6 +16,9 @@ var ftImgArray = [].slice.call(ftImgCollection);
 var ftRoleCollection = document.getElementsByClassName("roleFT");
 var ftRoleArray = [].slice.call(ftRoleCollection);
 var ftArraycount = 1;
+var marsDiv = document.querySelector(".mars-sel");
+var iceDiv = document.querySelector(".ice-sel");
+var forestDiv = document.querySelector(".forest-sel");
 var randomBallPosition = Math.floor(Math.random()*700 + 25);
 var balls = [];
 var bulletsPT = [];
@@ -23,7 +27,7 @@ var bulletsMap = [];
 var map = [];
 var time;
 var time2;
-
+var canvasBkg = 0;
 
 window.onload = function() {
 
@@ -101,6 +105,32 @@ window.onload = function() {
       ptRoleArray[ptArraycount].classList.remove("hide");
     }
   };
+
+  //change map
+  document.querySelector(".mars-sel").onclick = function() {
+    marsDiv.classList.add("selected");
+    canvasBkg = 0;
+    backgroundSelect = gamebkg[0]
+    bodysel.setAttribute("style", 'background-image: url("images/background.jpg")')
+    iceDiv.classList.remove("selected");
+    forestDiv.classList.remove("selected");
+  }
+  document.querySelector(".ice-sel").onclick = function() {
+    iceDiv.classList.add("selected");
+    canvasBkg = 1;
+    backgroundSelect = gamebkg[1]
+    bodysel.setAttribute("style", 'background-image: url("images/icebkg.jpg")')
+    marsDiv.classList.remove("selected");
+    forestDiv.classList.remove("selected");
+  }
+  document.querySelector(".forest-sel").onclick = function() {
+    forestDiv.classList.add("selected");
+    canvasBkg = 2;
+    backgroundSelect = gamebkg[2]
+    bodysel.setAttribute("style", 'background-image: url("images/forestbkg.jpg")')
+    iceDiv.classList.remove("selected");
+    marsDiv.classList.remove("selected");
+  }
 
   //change stage button functionality
   document.querySelector(".change-stage").onclick = function() {

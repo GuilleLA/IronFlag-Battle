@@ -114,10 +114,10 @@ Player.prototype.draw = function(img) {
 
 Player.prototype.crashWithBorders = function(){
   if((this.x + this.width) >= 800){
-    this.x = 750
+    this.x = 760
   }
   if((this.y + this.height) >= 800){
-    this.y = 750
+    this.y = 760
   }
   if(this.x <= 0){
     this.x = 0

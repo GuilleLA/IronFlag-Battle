@@ -3,8 +3,11 @@ var scorePT = 0;
 var scoreFT = 0;
 var stage = 1;
 var mapFire = true;
-var gamebkg = new Image()
-gamebkg.src ="images/gamebkg.jpg"
+var gamebkg = [new Image(), new Image(), new Image()]
+gamebkg[0].src ="images/gamebkg.jpg"
+gamebkg[1].src ="images/ice.jpg"
+gamebkg[2].src ="images/grass.jpg"
+var backgroundSelect = gamebkg[0];
 
 
 //Area de juego
@@ -14,9 +17,9 @@ var myGameArea = {
     this.canvas.width = 800;
     this.canvas.height = 800;
     this.ctx = this.canvas.getContext("2d");
-    this.ctx.drawImage(gamebkg, 0, 0, this.canvas.width, this.canvas.height);
-    this.ctx.fillStyle = "white";
+    this.ctx.drawImage(backgroundSelect, 0, 0, this.canvas.width, this.canvas.height);
     this.ctx.globalAlpha = 0.5;
+    this.ctx.fillStyle = "white";
     this.ctx.beginPath();
     this.ctx.arc(0, 0, 100, 0, Math.PI*2, true)
     this.ctx.fill();
@@ -30,9 +33,9 @@ var myGameArea = {
   frame: 0,
   clearArea: function(){
     this.ctx = this.canvas.getContext("2d");
-    this.ctx.drawImage(gamebkg, 0, 0, this.canvas.width, this.canvas.height);
-    this.ctx.fillStyle = "white";
+    this.ctx.drawImage(backgroundSelect, 0, 0, this.canvas.width, this.canvas.height);
     this.ctx.globalAlpha = 0.5;
+    this.ctx.fillStyle = "white";
     this.ctx.beginPath();
     this.ctx.arc(0, 0, 100, 0, Math.PI*2, true)
     this.ctx.fill();
@@ -116,23 +119,23 @@ function updateGameArea() {
 function creationOfObjects(){
   flagPT = new Flags(20, 20, 20, 20)
   flagFT = new Flags(20, 20, 760, 760)
-  ball1 = new Component(200, Math.floor(Math.random()*780), 20, 0, 4)
-  ball2 = new Component(600, Math.floor(Math.random()*780), 20, 0, 4)
-  ball3 = new Component(Math.floor(Math.random()*780), 200, 20, 4, 0)
-  ball4 = new Component(Math.floor(Math.random()*780), 600, 20, 4, 0)
-  ball5 = new Component(randomBallPosition, randomBallPosition, 20, 4, 4)
-  ball6 = new Component(800-randomBallPosition, randomBallPosition, 20, 4, -4)
+  ball1 = new Component(200, Math.floor(Math.random()*780), 20, 0, 3)
+  ball2 = new Component(600, Math.floor(Math.random()*780), 20, 0, 3)
+  ball3 = new Component(Math.floor(Math.random()*780), 200, 20, 3, 0)
+  ball4 = new Component(Math.floor(Math.random()*780), 600, 20, 3, 0)
+  ball5 = new Component(randomBallPosition, randomBallPosition, 20, 3, 3)
+  ball6 = new Component(800-randomBallPosition, randomBallPosition, 20, 3, -3)
   balls.push(ball1, ball2, ball3, ball4, ball5, ball6);
-  map1 = new Map( 275, 0, 0, 25, 200);
-  map2 = new Map( 0, 300, 0, 200, 25);
+  map1 = new Map( 275, 50, 0, 25, 150);
+  map2 = new Map( 50, 300, 0, 150, 25);
   map3 = new Map( 200, 600, 40, 0, 0);
   map4 = new Map( 400, 400, 40, 0, 0);
   map5 = new Map( 600, 200, 40, 0, 0);
-  map6 = new Map( 500, 600, 0, 25, 200);
-  map7 = new Map( 600, 475, 0, 200, 25);
+  map6 = new Map( 500, 600, 0, 25, 150);
+  map7 = new Map( 600, 475, 0, 150, 25);
   map.push(map1, map2, map3, map4, map5, map6, map7);
-  playerPT = new Player(40, 50, 50, 100, "down");
-  playerFT = new Player(40, 50, 725, 675, "up")
+  playerPT = new Player(40, 40, 50, 100, "down");
+  playerFT = new Player(40, 40, 725, 675, "up")
 }
 
 
@@ -378,10 +381,10 @@ function bulletCreation(bool, obj){
     }
   }
   if (bool === true && obj === map3 || bool === true && obj === map4 || bool === true && obj === map5){
-    bulletsMap.push(new Bullet(obj.x+obj.radius, obj.y, 6, 0))
-    bulletsMap.push(new Bullet(obj.x-obj.radius, obj.y, -6, 0))
-    bulletsMap.push(new Bullet(obj.x, obj.y+obj.radius, 0, 6))
-    bulletsMap.push(new Bullet(obj.x, obj.y-obj.radius, 0, -6))
+    bulletsMap.push(new Bullet(obj.x+obj.radius, obj.y, 5, 0))
+    bulletsMap.push(new Bullet(obj.x-obj.radius, obj.y, -5, 0))
+    bulletsMap.push(new Bullet(obj.x, obj.y+obj.radius, 0, 5))
+    bulletsMap.push(new Bullet(obj.x, obj.y-obj.radius, 0, -5))
   }
 }
 
@@ -461,7 +464,7 @@ function mapOrders(){
       if(playerPT.crashWithMap(map[i]) && playerPT.y+playerPT.height <= map[i].y) {playerPT.y -= 5}
     }
   }
-  if (myGameArea.frame % 100 === 0){
+  if (myGameArea.frame % 120 === 0){
     bulletCreation(mapFire, map3)
     bulletCreation(mapFire, map4)
     bulletCreation(mapFire, map5)
@@ -494,6 +497,9 @@ function reset() {
     flagFT.y = flagFT.initialPosY;
     flagPT.x = flagPT.initialPosX;
     flagPT.y = flagPT.initialPosY;
+    bulletsPT = [];
+    bulletsFT = [];
+    bulletsMap = [];
     var canvasSel = document.querySelector("canvas")
     scorePtHtml.innerHTML = "<p>Part-time Ironhacker</p>" + scorePT;
     scoreFtHtml.innerHTML = "<p>Full-time Ironhacker</p>" + scoreFT;
@@ -513,6 +519,9 @@ function reset() {
     flagFT.y = flagFT.initialPosY;
     flagPT.x = flagPT.initialPosX;
     flagPT.y = flagPT.initialPosY;
+    bulletsPT = [];
+    bulletsFT = [];
+    bulletsMap = [];
     var canvasSel = document.querySelector("canvas");
     canvasSel.classList.add("hide");
     if (scorePT > scoreFT){winner.innerHTML = "Part-time Ironhacker won";}
