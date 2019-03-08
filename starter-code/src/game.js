@@ -2,6 +2,7 @@ var canvasDiv = document.querySelector(".canvas-container")
 var scorePT = 0;
 var scoreFT = 0;
 var stage = 1;
+var mapFire = true;
 var gamebkg = new Image()
 gamebkg.src ="images/gamebkg.jpg"
 
@@ -50,116 +51,41 @@ var myGameArea = {
 function updateGameArea() {
   if (stage === 1){
     myGameArea.clearArea();
-    myGameArea.frames +=1;
+    myGameArea.frame +=1;
     playerOrders();
     bulletsOrders();
     flagOrders();
-    if(bulletsFT[0]){
-      for (i=0;i<bulletsFT.length;i++){
-        if (playerPT.crashWithComponents(bulletsFT[i]) === true){
-          playerPT.flag = false;
-          playerPT.x = playerPT.initialPosX;
-          playerPT.y = playerPT.initialPosY;
-          bulletsFT.splice(i,1);
-          i--;
-        }
-      }
-    }
-    if(bulletsPT[0]){
-      for (i=0;i<bulletsPT.length;i++){
-        if (playerFT.crashWithComponents(bulletsPT[i]) === true){
-          playerFT.flag = false;
-          playerFT.x = playerFT.initialPosX;
-          playerFT.y = playerFT.initialPosY;
-          bulletsPT.splice(i,1);
-          i--;
-        }
-      }
-    }
   }
   if (stage === 2){
     myGameArea.clearArea();
-    myGameArea.frames +=1;
+    myGameArea.frame +=1;
     mapOrders();
     bulletsOrders();
     playerOrders();
     flagOrders();
-    if(bulletsFT[0]){
-      for (i=0;i<bulletsFT.length;i++){
-        if (playerPT.crashWithComponents(bulletsFT[i]) === true){
-          playerPT.flag = false;
-          playerPT.x = playerPT.initialPosX;
-          playerPT.y = playerPT.initialPosY;
-        }
-      }
-    }
-    if(bulletsPT[0]){
-      for (i=0;i<bulletsPT.length;i++){
-        if (playerFT.crashWithComponents(bulletsPT[i]) === true){
-          playerFT.flag = false;
-          playerFT.x = playerFT.initialPosX;
-          playerFT.y = playerFT.initialPosY;
-        }
-      }
-    }
   }
   if (stage === 3){
     myGameArea.clearArea();
-    myGameArea.frames +=1;
+    myGameArea.frame +=1;
     mapOrders();
     bulletsOrders();
     ballOrders();
     playerOrders();
     flagOrders();
-    if(bulletsFT[0]){
-      for (i=0;i<bulletsFT.length;i++){
-        if (playerPT.crashWithComponents(bulletsFT[i]) === true){
-          playerPT.flag = false;
-          playerPT.x = playerPT.initialPosX;
-          playerPT.y = playerPT.initialPosY;
-        }
-      }
-    }
-    if(bulletsPT[0]){
-      for (i=0;i<bulletsPT.length;i++){
-        if (playerFT.crashWithComponents(bulletsPT[i]) === true){
-          playerFT.flag = false;
-          playerFT.x = playerFT.initialPosX;
-          playerFT.y = playerFT.initialPosY;
-        }
-      }
-    }
   }
   if (stage === 4){
     myGameArea.clearArea();
-    myGameArea.frames +=1;
+    myGameArea.frame +=1;
     mapOrders();
     bulletsOrders();
     ballOrders();
     playerOrders();
     flagOrders();
-    if(bulletsFT[0]){
-      for (i=0;i<bulletsFT.length;i++){
-        if (playerPT.crashWithComponents(bulletsFT[i]) === true){
-          playerPT.flag = false;
-          playerPT.x = playerPT.initialPosX;
-          playerPT.y = playerPT.initialPosY;
-        }
-      }
-    }
-    if(bulletsPT[0]){
-      for (i=0;i<bulletsPT.length;i++){
-        if (playerFT.crashWithComponents(bulletsPT[i]) === true){
-          playerFT.flag = false;
-          playerFT.x = playerFT.initialPosX;
-          playerFT.y = playerFT.initialPosY;
-        }
-      }
-    }
+
   }
   if (stage === 5){
     myGameArea.clearArea();
-    myGameArea.frames +=1;
+    myGameArea.frame +=1;
     mapOrders();
     bulletsOrders();
     ballOrders();
@@ -205,8 +131,8 @@ function creationOfObjects(){
   map6 = new Map( 500, 600, 0, 25, 200);
   map7 = new Map( 600, 475, 0, 200, 25);
   map.push(map1, map2, map3, map4, map5, map6, map7);
-  playerPT = new Player(50, 50, 50, 100, "down");
-  playerFT = new Player(50, 50, 725, 675, "up")
+  playerPT = new Player(40, 50, 50, 100, "down");
+  playerFT = new Player(40, 50, 725, 675, "up")
 }
 
 
@@ -331,6 +257,46 @@ function playerOrders () {
   playerFTmotion()
   playerPT.carryFlag(flagFT);
   playerFT.carryFlag(flagPT);
+  if(bulletsFT[0]){
+    for (i=0;i<bulletsFT.length;i++){
+      if (playerPT.crashWithComponents(bulletsFT[i]) === true){
+        playerPT.flag = false;
+        playerPT.x = playerPT.initialPosX;
+        playerPT.y = playerPT.initialPosY;
+        bulletsFT.splice(i,1);
+        i--;
+      }
+    }
+  }
+  if(bulletsPT[0]){
+    for (i=0;i<bulletsPT.length;i++){
+      if (playerFT.crashWithComponents(bulletsPT[i]) === true){
+        playerFT.flag = false;
+        playerFT.x = playerFT.initialPosX;
+        playerFT.y = playerFT.initialPosY;
+        bulletsPT.splice(i,1);
+        i--;
+      }
+    }
+  }
+  if(bulletsMap[0]){
+    for (i=0;i<bulletsMap.length;i++){
+      if (playerPT.crashWithComponents(bulletsMap[i]) === true){
+        playerPT.flag = false;
+        playerPT.x = playerPT.initialPosX;
+        playerPT.y = playerPT.initialPosY;
+        bulletsMap.splice(i,1);
+        i--;
+      }
+      if (playerFT.crashWithComponents(bulletsMap[i]) === true){
+        playerFT.flag = false;
+        playerFT.x = playerFT.initialPosX;
+        playerFT.y = playerFT.initialPosY;
+        bulletsMap.splice(i,1);
+        i--;
+      }
+    }
+  }
 }
 
 //Flag orders
@@ -402,7 +368,7 @@ function bulletCreation(bool, obj){
       bulletsPT.push(new Bullet(obj.x + obj.width / 2, obj.y, 0, -7))
     }
     if(obj.facing === "down"){
-      bulletsPT.push(new Bullet(obj.x + obj.width / 2, obj.y + obj.height, 0, 6))
+      bulletsPT.push(new Bullet(obj.x + obj.width / 2, obj.y + obj.height, 0, 7))
     }
     if(obj.facing === "left"){
       bulletsPT.push(new Bullet(obj.x, obj.y + obj.height / 2, -7, 0))
@@ -410,6 +376,12 @@ function bulletCreation(bool, obj){
     if(obj.facing === "right"){
       bulletsPT.push(new Bullet(obj.x + obj.width, obj.y + obj.height / 2, 7, 0))
     }
+  }
+  if (bool === true && obj === map3 || bool === true && obj === map4 || bool === true && obj === map5){
+    bulletsMap.push(new Bullet(obj.x+obj.radius, obj.y, 6, 0))
+    bulletsMap.push(new Bullet(obj.x-obj.radius, obj.y, -6, 0))
+    bulletsMap.push(new Bullet(obj.x, obj.y+obj.radius, 0, 6))
+    bulletsMap.push(new Bullet(obj.x, obj.y-obj.radius, 0, -6))
   }
 }
 
@@ -445,6 +417,17 @@ function bulletsOrders(){
       i--;
     }
   }
+  for (i = 0; i<bulletsMap.length; i++){
+    if(bulletsMap[i].crashWithBorders() === false){
+      bulletsMap[i].draw();
+      bulletsMap[i].moveBullet();
+    }
+  
+    else if(bulletsMap[i].crashWithBorders() === true){
+      bulletsMap.splice(i,1);
+      i--;
+    }
+  }
 }
 
 //Map orders
@@ -476,6 +459,22 @@ function mapOrders(){
       if(playerPT.crashWithMap(map[i]) && playerPT.y >= map[i].y) {playerPT.y += 5}
       if(playerPT.crashWithMap(map[i]) && playerPT.x+playerPT.width <= map[i].x) {playerPT.x -= 5}
       if(playerPT.crashWithMap(map[i]) && playerPT.y+playerPT.height <= map[i].y) {playerPT.y -= 5}
+    }
+  }
+  if (myGameArea.frame % 100 === 0){
+    bulletCreation(mapFire, map3)
+    bulletCreation(mapFire, map4)
+    bulletCreation(mapFire, map5)
+  }
+  for (i = 0; i<bulletsMap.length; i++){
+    if(bulletsMap[i].crashWithBorders() === false){
+      bulletsMap[i].draw();
+      bulletsMap[i].moveBullet();
+    }
+  
+    else if(bulletsMap[i].crashWithBorders() === true){
+      bulletsMap.splice(i,1);
+      i--;
     }
   }
 }

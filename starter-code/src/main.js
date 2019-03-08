@@ -19,6 +19,7 @@ var randomBallPosition = Math.floor(Math.random()*700 + 25);
 var balls = [];
 var bulletsPT = [];
 var bulletsFT = [];
+var bulletsMap = [];
 var map = [];
 var time;
 var time2;
