@@ -20,9 +20,23 @@ header, section, footer, article, details {
 /* remember to define focus styles! */
 
 body {
-  background-image: url("../images/background.jpg");
+  background-image: url("../images/background.png");
   background-size: cover;
   background-repeat: no-repeat;
+}
+
+.on{
+  width: 75px;
+  height: auto;
+  position: absolute;
+  right: 1%;
+}
+
+.off{
+  width: 75px;
+  height: auto;
+  position: absolute;
+  right: 1%;
 }
 
 :focus {

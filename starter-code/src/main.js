@@ -28,13 +28,27 @@ var map = [];
 var time;
 var time2;
 var canvasBkg = 0;
-
+var intro = document.querySelector("audio");
+gun = new Audio("sounds/gun.mp3");
 window.onload = function() {
-
+  
   creationOfObjects();
   
+  document.querySelector(".off").onclick = function() {
+    intro.play();
+    document.querySelector(".off").classList.add("hide");
+    document.querySelector(".on").classList.remove("hide");
+  }
+  document.querySelector(".on").onclick = function() {
+    intro.pause();
+    document.querySelector(".on").classList.add("hide");
+    document.querySelector(".off").classList.remove("hide");
+  }
   //Actions after start
   document.getElementById("start-button").onclick = function() {
+    intro.pause();
+    document.querySelector(".off").classList.add("hide");
+    document.querySelector(".on").classList.add("hide");
     mainImage.classList.add("hide");
     selection.classList.add("hide");
     myGameArea.start();
@@ -111,7 +125,7 @@ window.onload = function() {
     marsDiv.classList.add("selected");
     canvasBkg = 0;
     backgroundSelect = gamebkg[0]
-    bodysel.setAttribute("style", 'background-image: url("images/background.jpg")')
+    bodysel.setAttribute("style", 'background-image: url("images/background.png")')
     iceDiv.classList.remove("selected");
     forestDiv.classList.remove("selected");
   }
@@ -127,7 +141,7 @@ window.onload = function() {
     forestDiv.classList.add("selected");
     canvasBkg = 2;
     backgroundSelect = gamebkg[2]
-    bodysel.setAttribute("style", 'background-image: url("images/forestbkg.jpg")')
+    bodysel.setAttribute("style", 'background-image: url("images/forestbkg.png")')
     iceDiv.classList.remove("selected");
     marsDiv.classList.remove("selected");
   }
@@ -197,11 +211,13 @@ window.onload = function() {
         break;
       case 80:
       if(!time){ key80 = true;
-      time = setTimeout(_=> time = undefined, 500)}
+        gun.play(); 
+        time = setTimeout(_=> time = undefined, 800)}
         break;
       case 86:
       if(!time2) {key86 = true;
-      time2 = setTimeout(_=> time2 = undefined, 500)}
+        gun.play();
+      time2 = setTimeout(_=> time2 = undefined, 800)}
         break;
     }
   }
