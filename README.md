@@ -1,12 +1,14 @@
+![](starter-code/images/logo.png)
+
 # IRONFLAG BATTLE
 
 Long time ago a war of pride started in Ironhack between the coders that attended to the part-time web developer course and those who attend to the full-time course. The armies were formed by three different type of soldiers:
 
-- Soldiers from the forests of planet Earth: This soldiers, also know as front-end developers, are very skilled when they have to design uniforms, maps, structure of weapons... everything that an army needs to go to war with the most comfortable equipment.
+- **Soldiers from the forests of planet Earth**: This soldiers, also know as **front-end developers**, are very skilled when they have to design uniforms, maps, structure of weapons... everything that an army needs to go to war with the most comfortable equipment.
 
-- Soldiers from the artic places of planet Earth: This soldier, also known as back-end developers, are rough and cold people, that are incredibly skilled giving functionality to the designs made by the people of the forest.
+- **Soldiers from the artic places of planet Earth**: This soldier, also known as **back-end developers**, are rough and cold people, that are incredibly skilled giving functionality to the designs made by the people of the forest.
 
-- Soldiers from Mars: Finally there is are rare, but amazing type of soldier, that has been able to master the skills of all the inhabitants of planet Earth and can give a deeper vision on the combination of design and functionality.
+- **Soldiers from Mars**: Finally there is are rare, but amazing type of soldier the **Full-stack developer**, that has been able to master the skills of all the inhabitants of planet Earth and can give a deeper vision on the combination of design and functionality.
 
 This war was cold and brutal, many coders in both sides were burning their eyes in front of a screen. Most of them would end blind and useless to their band. For this reason, the leaders of each side, got together and decided that the best way to solve their problems, will be a competition, where each side will develop a combatcraft that will stand for their side and show who should be the real ruler.
 
@@ -42,17 +44,17 @@ The war could take place in three different places:
 
 The pilot of the Part-time army will have the following controls:
 
-UP - W
-DOWN - S
-LEFT - A
-RIGHT - D
-FIRE - V 
+- UP - W
+- DOWN - S
+- LEFT - A
+- RIGHT - D
+- FIRE - V 
 
 The pilot of the Full-time army will have the following controls:
 
-UP - Arrow up
-DOWN - Arrow down
-LEFT - Arrow left
-RIGHT - Arrow Right
-FIRE - P
+- UP - Arrow up
+- DOWN - Arrow down
+- LEFT - Arrow left
+- RIGHT - Arrow Right
+- FIRE - P
 
