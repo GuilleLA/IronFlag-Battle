@@ -1,4 +1,4 @@
-![test](starter-code/images/logo.png)
+
 <img src="starter-code/images/logo.png" width="250" height="250">
 
 # IRONFLAG BATTLE
