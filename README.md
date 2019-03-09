@@ -1,4 +1,4 @@
-![](starter-code/images/logo.png = 250x250)
+![](starter-code/images/logo.png =250x250)
 
 # IRONFLAG BATTLE
 
