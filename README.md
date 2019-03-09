@@ -11,7 +11,7 @@ Long time ago a war of pride started in Ironhack between the coders that attende
 
 - **Soldiers from Mars**: Finally there is are rare, but amazing type of soldier the **Full-stack developer**, that has been able to master the skills of all the inhabitants of planet Earth and can give a deeper vision on the combination of design and functionality.
 
-<img src="starter-code/images/01munecofondo.jpg" width="250" height="450"><img src="starter-code/images/02munecofondo.jpg" width="250" height="450"><img src="starter-code/images/03munecofondo.jpg" width="250" height="450">
+<img src="starter-code/images/02munecofondo.jpg" width="250" height="450"><img src="starter-code/images/01munecofondo.jpg" width="250" height="450"><img src="starter-code/images/03munecofondo.jpg" width="250" height="450">
 
 
 This war was cold and brutal, many coders in both sides were burning their eyes in front of a screen. Most of them would end blind and useless to their band. For this reason, the leaders of each side, got together and decided that the best way to solve their problems, will be a competition, where each side will develop a combatcraft that will stand for their side and show who should be the real ruler.
