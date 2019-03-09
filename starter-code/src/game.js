@@ -1,16 +1,42 @@
-var canvasDiv = document.querySelector(".canvas-container")
+//Selectors variables
+var bodysel = document.querySelector("body");
+var mainImage = document.querySelector(".main-image");
+var selection = document.querySelector(".selection");
+var scoreBoard = document.querySelector(".score-board");
+var scorePtHtml = document.querySelector(".score-pt");
+var scoreFtHtml = document.querySelector(".score-ft");
+var finalScreen = document.querySelector(".final-screen");
+var winner = document.querySelector(".winner");
+var ptImgCollection = document.getElementsByClassName("playerPT");
+var ptImgArray = [].slice.call(ptImgCollection);
+var ptRoleCollection = document.getElementsByClassName("rolePT");
+var ptRoleArray = [].slice.call(ptRoleCollection);
+var ptArraycount = 0;
+var ftImgCollection = document.getElementsByClassName("playerFT");
+var ftImgArray = [].slice.call(ftImgCollection);
+var ftRoleCollection = document.getElementsByClassName("roleFT");
+var ftRoleArray = [].slice.call(ftRoleCollection);
+var ftArraycount = 1;
+var mapCollection = document.getElementsByClassName("map");
+var mapDivArray = [].slice.call(mapCollection);
+var marsDiv = document.querySelector(".mars-sel");
+var iceDiv = document.querySelector(".ice-sel");
+var forestDiv = document.querySelector(".forest-sel");
+var canvasDiv = document.querySelector(".canvas-container");
+
+//Score and stage variables
 var scorePT = 0;
 var scoreFT = 0;
 var stage = 1;
-var mapFire = true;
+
+
+//Area de juego
 var gamebkg = [new Image(), new Image(), new Image()]
 gamebkg[0].src ="images/gamebkg.jpg"
 gamebkg[1].src ="images/ice.jpg"
 gamebkg[2].src ="images/grass.jpg"
 var backgroundSelect = gamebkg[0];
 
-
-//Area de juego
 var myGameArea = {
   canvas: document.createElement("canvas"),
   start: function(){
@@ -93,25 +119,7 @@ function updateGameArea() {
     bulletsOrders();
     ballOrders();
     playerOrders();
-    flagOrders();
-    if(bulletsFT[0]){
-      for (i=0;i<bulletsFT.length;i++){
-        if (playerPT.crashWithComponents(bulletsFT[i]) === true){
-          playerPT.flag = false;
-          playerPT.x = playerPT.initialPosX;
-          playerPT.y = playerPT.initialPosY;
-        }
-      }
-    }
-    if(bulletsPT[0]){
-      for (i=0;i<bulletsPT.length;i++){
-        if (playerFT.crashWithComponents(bulletsPT[i]) === true){
-          playerFT.flag = false;
-          playerFT.x = playerFT.initialPosX;
-          playerFT.y = playerFT.initialPosY;
-        }
-      }
-    }
+    flagOrders(); 
   }    
 }
 
@@ -136,350 +144,6 @@ function creationOfObjects(){
   map.push(map1, map2, map3, map4, map5, map6, map7);
   playerPT = new Player(40, 40, 50, 100, "down");
   playerFT = new Player(40, 40, 725, 675, "up")
-}
-
-
-//playerPT motion
-function playerPTmotion(){
-  if(stage < 5){
-    moveUpPT(key87, playerPT);
-    moveDownPT(key83, playerPT);
-    moveRightPT(key68, playerPT);
-    moveLeftPT(key65, playerPT);
-  }
-  if (stage === 5){
-    moveUpPT(key83, playerPT);
-    moveDownPT(key87, playerPT);
-    moveRightPT(key65, playerPT);
-    moveLeftPT(key68, playerPT);
-  }
-  
-}
-
-//playerFT motion
-function playerFTmotion(){
-  if(stage < 5){
-    moveUpPT(key38, playerFT);
-    moveDownPT(key40, playerFT);
-    moveRightPT(key39, playerFT);
-    moveLeftPT(key37, playerFT);
-  }
-  if (stage === 5){
-    moveUpPT(key40, playerFT);
-    moveDownPT(key38, playerFT);
-    moveRightPT(key37, playerFT);
-    moveLeftPT(key39, playerFT);
-  }
-}
-
-//motion definition
-function moveUpPT(boolean, obj){
-  if(boolean === true){
-    if(obj.flag === false){
-      obj.y -= 4;
-    }
-    else{
-      obj.y -= 3
-    }
-  }
-  else{
-    obj.x = obj.x
-    obj.y = obj.y
-  }
-}
-
-function moveDownPT(boolean, obj){
-  if(boolean === true){
-    if(obj.flag === false){
-      obj.y += 4;
-    }
-    else{
-      obj.y += 3
-    }
-  }
-  else{
-    obj.x = obj.x
-    obj.y = obj.y
-  }
-}
-function moveRightPT(boolean, obj){
-  if(boolean === true){
-    if(obj.flag === false){
-      obj.x += 4;
-    }
-    else{
-      obj.x += 3
-    }
-  }
-  else{
-    obj.x = obj.x
-    obj.y = obj.y
-  }
-}
-
-function moveLeftPT(boolean, obj){
-  if(boolean === true){
-    if(obj.flag === false){
-      obj.x -= 4;
-    }
-    else{
-      obj.x -= 3
-    }
-  }
-  else{
-    obj.x = obj.x
-    obj.y = obj.y
-  }
-}
-
-function checkCrashWithComponents () {
-  for (i=0;i<balls.length;i++){
-    if (playerFT.crashWithComponents(balls[i]) === true){
-      playerFT.flag = false;
-      playerFT.x = playerFT.initialPosX;
-      playerFT.y = playerFT.initialPosY;
-    }
-  }
-
-  for (i=0;i<balls.length;i++){
-    if (playerPT.crashWithComponents(balls[i]) === true){
-      playerPT.flag = false;
-      playerPT.x = playerPT.initialPosX;
-      playerPT.y = playerPT.initialPosY;
-    }
-  }
-}
-
-//Player orders
-function playerOrders () {
-  playerPT.crashWithBorders();
-  playerFT.crashWithBorders();
-  playerPT.draw(tankPTImg);
-  playerFT.draw(tankFTImg);
-  playerPTmotion()
-  playerFTmotion()
-  playerPT.carryFlag(flagFT);
-  playerFT.carryFlag(flagPT);
-  if(bulletsFT[0]){
-    for (i=0;i<bulletsFT.length;i++){
-      if (playerPT.crashWithComponents(bulletsFT[i]) === true){
-        playerPT.flag = false;
-        playerPT.x = playerPT.initialPosX;
-        playerPT.y = playerPT.initialPosY;
-        bulletsFT.splice(i,1);
-        i--;
-      }
-    }
-  }
-  if(bulletsPT[0]){
-    for (i=0;i<bulletsPT.length;i++){
-      if (playerFT.crashWithComponents(bulletsPT[i]) === true){
-        playerFT.flag = false;
-        playerFT.x = playerFT.initialPosX;
-        playerFT.y = playerFT.initialPosY;
-        bulletsPT.splice(i,1);
-        i--;
-      }
-    }
-  }
-  if(bulletsMap[0]){
-    for (i=0;i<bulletsMap.length;i++){
-      if (playerPT.crashWithComponents(bulletsMap[i]) === true){
-        playerPT.flag = false;
-        playerPT.x = playerPT.initialPosX;
-        playerPT.y = playerPT.initialPosY;
-        bulletsMap.splice(i,1);
-        i--;
-      }
-      if (playerFT.crashWithComponents(bulletsMap[i]) === true){
-        playerFT.flag = false;
-        playerFT.x = playerFT.initialPosX;
-        playerFT.y = playerFT.initialPosY;
-        bulletsMap.splice(i,1);
-        i--;
-      }
-    }
-  }
-}
-
-//Flag orders
-function flagOrders() {
-  flagFT.moveFlag(playerPT);
-  flagPT.moveFlag(playerFT);
-  flagPT.draw(flagImgPT);
-  flagFT.draw(flagImgFT);
-  checkFlagInBase();
-}
-
-function checkFlagInBase() {
-  if (flagPT.inEnemyArea(baseFT) === true) {
-    scoreFT++;
-    myGameArea.stopGame();
-    stage++;
-    reset();
-  }
-  if (flagFT.inEnemyArea(basePT) === true) {
-    scorePT++;
-    myGameArea.stopGame();
-    stage++;
-    reset();
-  }
-}
-
-//ball orders 
-function ballOrders(){
-  ball1.draw();
-  ball2.draw();
-  ball3.draw();
-  ball4.draw();
-  ball5.draw();
-  ball6.draw();
-  ball1.moveComponent();
-  ball2.moveComponent();
-  ball3.moveComponent();
-  ball4.moveComponent();
-  ball5.moveComponent();
-  ball6.moveComponent();
-  ball1.crashWithBorders();
-  ball2.crashWithBorders();
-  ball3.crashWithBorders();
-  ball4.crashWithBorders();
-  ball5.crashWithBorders();
-  ball6.crashWithBorders();
-  checkCrashWithComponents();
-}
-
-
-//Creation of bullets
-function bulletCreation(bool, obj){
-  if (bool === true && obj === playerFT){
-    if(obj.facing === "up"){
-      bulletsFT.push(new Bullet(obj.x + obj.width / 2, obj.y, 0, -7))
-    }
-    if(obj.facing === "down"){
-      bulletsFT.push(new Bullet(obj.x + obj.width / 2, obj.y + obj.height, 0, 6))
-    }
-    if(obj.facing === "left"){
-      bulletsFT.push(new Bullet(obj.x, obj.y + obj.height / 2, -7, 0))
-    }
-    if(obj.facing === "right"){
-      bulletsFT.push(new Bullet(obj.x + obj.width, obj.y + obj.height / 2, 7, 0))
-    }
-  }
-  if (bool === true && obj === playerPT){
-    if(obj.facing === "up"){
-      bulletsPT.push(new Bullet(obj.x + obj.width / 2, obj.y, 0, -7))
-    }
-    if(obj.facing === "down"){
-      bulletsPT.push(new Bullet(obj.x + obj.width / 2, obj.y + obj.height, 0, 7))
-    }
-    if(obj.facing === "left"){
-      bulletsPT.push(new Bullet(obj.x, obj.y + obj.height / 2, -7, 0))
-    }
-    if(obj.facing === "right"){
-      bulletsPT.push(new Bullet(obj.x + obj.width, obj.y + obj.height / 2, 7, 0))
-    }
-  }
-  if (bool === true && obj === map3 || bool === true && obj === map4 || bool === true && obj === map5){
-    bulletsMap.push(new Bullet(obj.x+obj.radius, obj.y, 5, 0))
-    bulletsMap.push(new Bullet(obj.x-obj.radius, obj.y, -5, 0))
-    bulletsMap.push(new Bullet(obj.x, obj.y+obj.radius, 0, 5))
-    bulletsMap.push(new Bullet(obj.x, obj.y-obj.radius, 0, -5))
-  }
-}
-
-function bulletsAppear(){
-  bulletCreation(key80, playerFT);
-  bulletCreation(key86, playerPT);
-  key80 = key86 = false;
-}
-
-//Bullets orders
-
-function bulletsOrders(){
-  bulletsAppear()
-  for (i = 0; i<bulletsPT.length; i++){
-    if(bulletsPT[i].crashWithBorders() === false){
-      bulletsPT[i].draw();
-      bulletsPT[i].moveBullet();
-    }
-  
-    else if(bulletsPT[i].crashWithBorders() === true){
-      bulletsPT.splice(i,1);
-      i--;
-    }
-  }
-  for (i = 0; i<bulletsFT.length; i++){
-    if(bulletsFT[i].crashWithBorders() === false){
-      bulletsFT[i].draw();
-      bulletsFT[i].moveBullet();
-    }
-  
-    else if(bulletsFT[i].crashWithBorders() === true){
-      bulletsFT.splice(i,1);
-      i--;
-    }
-  }
-  for (i = 0; i<bulletsMap.length; i++){
-    if(bulletsMap[i].crashWithBorders() === false){
-      bulletsMap[i].draw();
-      bulletsMap[i].moveBullet();
-    }
-  
-    else if(bulletsMap[i].crashWithBorders() === true){
-      bulletsMap.splice(i,1);
-      i--;
-    }
-  }
-}
-
-//Map orders
-function mapOrders(){
-  map1.draw();
-  map2.draw();
-  map3.draw();
-  map4.draw();
-  map5.draw();
-  map6.draw();
-  map7.draw();
-  for (i=0;i<map.length;i++){
-    if(map[i].radius === 0){
-      if(playerFT.crashWithMap(map[i]) && playerFT.x+playerFT.width >= map[i].x && playerFT.x <= map[i].x){playerFT.x -= 5}
-      if(playerFT.crashWithMap(map[i]) && playerFT.x <= map[i].x+map[i].width && playerFT.x+playerFT.width >= map[i].x+map[i].width){playerFT.x += 5}
-      if(playerFT.crashWithMap(map[i]) && playerFT.y+playerFT.height >= map[i].y && playerFT.y <= map[i].y){playerFT.y -= 5}
-      if(playerFT.crashWithMap(map[i]) && playerFT.y <= map[i].y+map[i].height && playerFT.y+playerFT.height >= map[i].y+map[i].height){playerFT.y += 5}
-      if(playerPT.crashWithMap(map[i]) && playerPT.x+playerPT.width >= map[i].x && playerPT.x <= map[i].x){playerPT.x -= 5}
-      if(playerPT.crashWithMap(map[i]) && playerPT.x <= map[i].x+map[i].width && playerPT.x+playerPT.width >= map[i].x+map[i].width){playerPT.x += 5}
-      if(playerPT.crashWithMap(map[i]) && playerPT.y+playerPT.height >= map[i].y && playerPT.y <= map[i].y){playerPT.y -= 5}
-      if(playerPT.crashWithMap(map[i]) && playerPT.y <= map[i].y+map[i].height && playerPT.y+playerPT.height >= map[i].y+map[i].height){playerPT.y += 5}
-    }
-    if(map[i].radius != 0){
-      if(playerFT.crashWithMap(map[i]) && playerFT.x >= map[i].x) {playerFT.x += 5}
-      if(playerFT.crashWithMap(map[i]) && playerFT.y >= map[i].y) {playerFT.y += 5}
-      if(playerFT.crashWithMap(map[i]) && playerFT.x+playerFT.width <= map[i].x) {playerFT.x -= 5}
-      if(playerFT.crashWithMap(map[i]) && playerFT.y+playerFT.height <= map[i].y) {playerFT.y -= 5}
-      if(playerPT.crashWithMap(map[i]) && playerPT.x >= map[i].x) {playerPT.x += 5}
-      if(playerPT.crashWithMap(map[i]) && playerPT.y >= map[i].y) {playerPT.y += 5}
-      if(playerPT.crashWithMap(map[i]) && playerPT.x+playerPT.width <= map[i].x) {playerPT.x -= 5}
-      if(playerPT.crashWithMap(map[i]) && playerPT.y+playerPT.height <= map[i].y) {playerPT.y -= 5}
-    }
-  }
-  if (myGameArea.frame % 120 === 0){
-    bulletCreation(mapFire, map3)
-    bulletCreation(mapFire, map4)
-    bulletCreation(mapFire, map5)
-  }
-  for (i = 0; i<bulletsMap.length; i++){
-    if(bulletsMap[i].crashWithBorders() === false){
-      bulletsMap[i].draw();
-      bulletsMap[i].moveBullet();
-    }
-  
-    else if(bulletsMap[i].crashWithBorders() === true){
-      bulletsMap.splice(i,1);
-      i--;
-    }
-  }
 }
 
 //reset between stages

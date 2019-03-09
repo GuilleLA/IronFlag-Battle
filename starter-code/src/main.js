@@ -1,30 +1,3 @@
-var bodysel = document.querySelector("body");
-var mainImage = document.querySelector(".main-image");
-var selection = document.querySelector(".selection");
-var scoreBoard = document.querySelector(".score-board");
-var scorePtHtml = document.querySelector(".score-pt");
-var scoreFtHtml = document.querySelector(".score-ft");
-var finalScreen = document.querySelector(".final-screen");
-var winner = document.querySelector(".winner");
-var ptImgCollection = document.getElementsByClassName("playerPT");
-var ptImgArray = [].slice.call(ptImgCollection);
-var ptRoleCollection = document.getElementsByClassName("rolePT");
-var ptRoleArray = [].slice.call(ptRoleCollection);
-var ptArraycount = 0;
-var ftImgCollection = document.getElementsByClassName("playerFT");
-var ftImgArray = [].slice.call(ftImgCollection);
-var ftRoleCollection = document.getElementsByClassName("roleFT");
-var ftRoleArray = [].slice.call(ftRoleCollection);
-var ftArraycount = 1;
-var marsDiv = document.querySelector(".mars-sel");
-var iceDiv = document.querySelector(".ice-sel");
-var forestDiv = document.querySelector(".forest-sel");
-var randomBallPosition = Math.floor(Math.random()*700 + 25);
-var balls = [];
-var bulletsPT = [];
-var bulletsFT = [];
-var bulletsMap = [];
-var map = [];
 var time;
 var time2;
 var canvasBkg = 0;
@@ -123,27 +96,57 @@ window.onload = function() {
   //change map
   document.querySelector(".mars-sel").onclick = function() {
     marsDiv.classList.add("selected");
+    mapDivArray[0].classList.remove("hide");
+    mapDivArray[0].setAttribute("style", 'color: wheat;')
+    mapDivArray[1].classList.add("hide");
+    mapDivArray[2].classList.add("hide");
     canvasBkg = 0;
     backgroundSelect = gamebkg[0]
     bodysel.setAttribute("style", 'background-image: url("images/background.png")')
     iceDiv.classList.remove("selected");
     forestDiv.classList.remove("selected");
+    ftRoleArray[0].setAttribute("style", 'color: wheat;')
+    ftRoleArray[1].setAttribute("style", 'color: wheat;')
+    ftRoleArray[2].setAttribute("style", 'color: wheat;')
+    ptRoleArray[0].setAttribute("style", 'color: wheat;')
+    ptRoleArray[1].setAttribute("style", 'color: wheat;')
+    ptRoleArray[2].setAttribute("style", 'color: wheat;')
   }
   document.querySelector(".ice-sel").onclick = function() {
     iceDiv.classList.add("selected");
+    mapDivArray[0].classList.add("hide");
+    mapDivArray[1].classList.remove("hide");
+    mapDivArray[1].setAttribute("style", 'color: red;')
+    mapDivArray[2].classList.add("hide");
     canvasBkg = 1;
     backgroundSelect = gamebkg[1]
     bodysel.setAttribute("style", 'background-image: url("images/icebkg.jpg")')
     marsDiv.classList.remove("selected");
     forestDiv.classList.remove("selected");
+    ftRoleArray[0].setAttribute("style", 'color: red;')
+    ftRoleArray[1].setAttribute("style", 'color: red;')
+    ftRoleArray[2].setAttribute("style", 'color: red;')
+    ptRoleArray[0].setAttribute("style", 'color: red;')
+    ptRoleArray[1].setAttribute("style", 'color: red;')
+    ptRoleArray[2].setAttribute("style", 'color: red;')
   }
   document.querySelector(".forest-sel").onclick = function() {
     forestDiv.classList.add("selected");
+    mapDivArray[0].classList.add("hide");
+    mapDivArray[1].classList.add("hide");
+    mapDivArray[2].classList.remove("hide");
+    mapDivArray[2].setAttribute("style", 'color: aqua;')
     canvasBkg = 2;
     backgroundSelect = gamebkg[2]
     bodysel.setAttribute("style", 'background-image: url("images/forestbkg.png")')
     iceDiv.classList.remove("selected");
     marsDiv.classList.remove("selected");
+    ftRoleArray[0].setAttribute("style", 'color: aqua;')
+    ftRoleArray[1].setAttribute("style", 'color: aqua;')
+    ftRoleArray[2].setAttribute("style", 'color: aqua;')
+    ptRoleArray[0].setAttribute("style", 'color: aqua;')
+    ptRoleArray[1].setAttribute("style", 'color: aqua;')
+    ptRoleArray[2].setAttribute("style", 'color: aqua;')
   }
 
   //change stage button functionality
