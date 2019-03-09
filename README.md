@@ -31,6 +31,7 @@ The war could take place in three different places:
 - Forest of planet Earth
 - Artic in planet Earth
 - Mars colonies
+
 <img src="starter-code/images/forestbkg.jpg" width="250" height="250">    <img src="starter-code/images/icebkg.jpg" width="250" height="250">    <img src="starter-code/images/background.jpg" width="250" height="250">
 
 ### Stages
