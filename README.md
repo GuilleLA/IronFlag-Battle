@@ -1,12 +1,12 @@
-![](starter-code/images/logo.png)
+![](starter-code/images/logo.png = 250x250)
 
 # IRONFLAG BATTLE
 
 Long time ago a war of pride started in Ironhack between the coders that attended to the part-time web developer course and those who attend to the full-time course. The armies were formed by three different type of soldiers:
 
-- **Soldiers from the forests of planet Earth**: This soldiers, also know as **front-end developers**, are very skilled when they have to design uniforms, maps, structure of weapons... everything that an army needs to go to war with the most comfortable equipment.
+- **Soldiers from the forests of planet Earth**: This soldiers, also know as **Front-end developers**, are very skilled when they have to design uniforms, maps, structure of weapons... everything that an army needs to go to war with the most comfortable equipment.
 
-- **Soldiers from the artic places of planet Earth**: This soldier, also known as **back-end developers**, are rough and cold people, that are incredibly skilled giving functionality to the designs made by the people of the forest.
+- **Soldiers from the artic places of planet Earth**: This soldier, also known as **Back-end developers**, are rough and cold people, that are incredibly skilled giving functionality to the designs made by the people of the forest.
 
 - **Soldiers from Mars**: Finally there is are rare, but amazing type of soldier the **Full-stack developer**, that has been able to master the skills of all the inhabitants of planet Earth and can give a deeper vision on the combination of design and functionality.
 
