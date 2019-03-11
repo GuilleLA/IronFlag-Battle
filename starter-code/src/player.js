@@ -7,6 +7,7 @@ function Player (width, height, x, y, facing){
   this.y = y;
   this.facing = facing;
   this.flag = false;
+  this.weapon = "machine-gun"
   
 }
 var tankPTImg = [new Image(), new Image(), new Image(), new Image()]
@@ -60,6 +61,11 @@ Player.prototype.crashWithComponents = function(obj){
 Player.prototype.carryFlag = function(obj){
   if (this.x <= obj.x + obj.width && this.x + this.width >= obj.x && this.y <= obj.y + obj.height && this.y + this.height >= obj.y){
     this.flag = true;
+  }
+}
+Player.prototype.laserCrash = function(obj){
+  if (this.x <= obj.x + obj.width && this.x + this.width >= obj.x && this.y <= obj.y + obj.height && this.y + this.height >= obj.y){
+    return true;
   }
 }
 
@@ -182,25 +188,36 @@ var key39 = false;
 var key80 = false;
 var key86 = false;
 
-function checkCrashWithComponents () {
-  for (i=0;i<balls.length;i++){
-    if (playerFT.crashWithComponents(balls[i]) === true){
-      playerFT.flag = false;
-      playerFT.x = playerFT.initialPosX;
-      playerFT.y = playerFT.initialPosY;
-    }
-  }
+//Player orders
 
-  for (i=0;i<balls.length;i++){
-    if (playerPT.crashWithComponents(balls[i]) === true){
-      playerPT.flag = false;
-      playerPT.x = playerPT.initialPosX;
-      playerPT.y = playerPT.initialPosY;
+function bulletsCrash(obj, arr) {
+  if(arr[0]){
+    for (i=0;i<arr.length;i++){
+      if (obj.crashWithComponents(arr[i]) === true){
+        obj.flag = false;
+        obj.x = obj.initialPosX;
+        obj.y = obj.initialPosY;
+        arr.splice(i,1);
+        i--;
+      }
     }
   }
 }
 
-//Player orders
+function crashWithLaser(obj, arr) {
+  if(arr[0]){
+    for (i=0;i<arr.length;i++){
+      if (obj.laserCrash(arr[i]) === true){
+        obj.flag = false;
+        obj.x = obj.initialPosX;
+        obj.y = obj.initialPosY;
+        arr.splice(i,1);
+        i--;
+      }
+    }
+  }
+}
+
 function playerOrders () {
   playerPT.crashWithBorders();
   playerFT.crashWithBorders();
@@ -210,44 +227,10 @@ function playerOrders () {
   playerFTmotion()
   playerPT.carryFlag(flagFT);
   playerFT.carryFlag(flagPT);
-  if(bulletsFT[0]){
-    for (i=0;i<bulletsFT.length;i++){
-      if (playerPT.crashWithComponents(bulletsFT[i]) === true){
-        playerPT.flag = false;
-        playerPT.x = playerPT.initialPosX;
-        playerPT.y = playerPT.initialPosY;
-        bulletsFT.splice(i,1);
-        i--;
-      }
-    }
-  }
-  if(bulletsPT[0]){
-    for (i=0;i<bulletsPT.length;i++){
-      if (playerFT.crashWithComponents(bulletsPT[i]) === true){
-        playerFT.flag = false;
-        playerFT.x = playerFT.initialPosX;
-        playerFT.y = playerFT.initialPosY;
-        bulletsPT.splice(i,1);
-        i--;
-      }
-    }
-  }
-  if(bulletsMap[0]){
-    for (i=0;i<bulletsMap.length;i++){
-      if (playerPT.crashWithComponents(bulletsMap[i]) === true){
-        playerPT.flag = false;
-        playerPT.x = playerPT.initialPosX;
-        playerPT.y = playerPT.initialPosY;
-        bulletsMap.splice(i,1);
-        i--;
-      }
-      if (playerFT.crashWithComponents(bulletsMap[i]) === true){
-        playerFT.flag = false;
-        playerFT.x = playerFT.initialPosX;
-        playerFT.y = playerFT.initialPosY;
-        bulletsMap.splice(i,1);
-        i--;
-      }
-    }
-  }
+  bulletsCrash(playerPT, bulletsFT);
+  bulletsCrash(playerFT, bulletsPT);
+  bulletsCrash(playerPT, bulletsMap);
+  bulletsCrash(playerFT, bulletsMap);
+  crashWithLaser(playerPT, laserFT);
+  crashWithLaser(playerFT, laserPT);
 }

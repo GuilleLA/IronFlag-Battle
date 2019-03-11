@@ -1,6 +1,8 @@
 var bulletsPT = [];
 var bulletsFT = [];
 var bulletsMap = [];
+var laserPT = [];
+var laserFT = [];
 
 function Bullet(x, y, speedX, speedY) {
   this.x = x;
@@ -31,35 +33,98 @@ Bullet.prototype.crashWithBorders = function(){
 }
 
 
+function Laser(x, y, width, height, speedX, speedY){
+  this.x = x;
+  this.y = y;
+  this.width = width;
+  this.height = height;
+  this.speedX = speedX;
+  this.speedY = speedY;
+}
+
+Laser.prototype.draw = function() {
+
+  ctx = myGameArea.canvas.getContext("2d");
+  ctx.fillStyle = "blue";
+  ctx.beginPath();
+  ctx.fillRect(this.x, this.y, this.width, this.height);
+  ctx.closePath()
+}
+
+Laser.prototype.moveBullet = function(){
+  this.x += this.speedX
+  this.y += this.speedY
+}
+
+Laser.prototype.crashWithBorders = function(){
+  if(this.x >= 800 || this.y >= 800 || this.x + this.width <= 0 || this.y + this.height <= 0){
+    return true;
+  }else {
+    return false
+  }
+}
+
 //Creation of bullets
 function bulletCreation(bool, obj){
   if (bool === true && obj === playerFT){
-    if(obj.facing === "up"){
-      bulletsFT.push(new Bullet(obj.x + obj.width / 2, obj.y, 0, -7))
+    if(playerFT.weapon === "machine-gun"){
+      if(obj.facing === "up"){
+        bulletsFT.push(new Bullet(obj.x + obj.width / 2, obj.y, 0, -7))
+      }
+      if(obj.facing === "down"){
+        bulletsFT.push(new Bullet(obj.x + obj.width / 2, obj.y + obj.height, 0, 7))
+      }
+      if(obj.facing === "left"){
+        bulletsFT.push(new Bullet(obj.x, obj.y + obj.height / 2, -7, 0))
+      }
+      if(obj.facing === "right"){
+        bulletsFT.push(new Bullet(obj.x + obj.width, obj.y + obj.height / 2, 7, 0))
+      }
     }
-    if(obj.facing === "down"){
-      bulletsFT.push(new Bullet(obj.x + obj.width / 2, obj.y + obj.height, 0, 6))
-    }
-    if(obj.facing === "left"){
-      bulletsFT.push(new Bullet(obj.x, obj.y + obj.height / 2, -7, 0))
-    }
-    if(obj.facing === "right"){
-      bulletsFT.push(new Bullet(obj.x + obj.width, obj.y + obj.height / 2, 7, 0))
-    }
+    if (playerFT.weapon === "laser"){
+      if(obj.facing === "up"){
+        laserFT.push(new Laser(obj.x + obj.width / 2, obj.y, 10, 30, 0, -6))
+      }
+      if(obj.facing === "down"){
+        laserFT.push(new Laser(obj.x + obj.width / 2, obj.y + obj.height, 10, 30, 0, 6))
+      }
+      if(obj.facing === "left"){
+        laserFT.push(new Laser(obj.x, obj.y + obj.height / 2, 30, 10, -6, 0))
+      }
+      if(obj.facing === "right"){
+        laserFT.push(new Laser(obj.x + obj.width, obj.y + obj.height / 2, 30, 10, 6, 0))
+      }
+    } 
   }
   if (bool === true && obj === playerPT){
-    if(obj.facing === "up"){
-      bulletsPT.push(new Bullet(obj.x + obj.width / 2, obj.y, 0, -7))
+    if(playerPT.weapon === "machine-gun"){
+      if(obj.facing === "up"){
+        bulletsPT.push(new Bullet(obj.x + obj.width / 2, obj.y, 0, -7))
+      }
+      if(obj.facing === "down"){
+        bulletsPT.push(new Bullet(obj.x + obj.width / 2, obj.y + obj.height, 0, 7))
+      }
+      if(obj.facing === "left"){
+        bulletsPT.push(new Bullet(obj.x, obj.y + obj.height / 2, -7, 0))
+      }
+      if(obj.facing === "right"){
+        bulletsPT.push(new Bullet(obj.x + obj.width, obj.y + obj.height / 2, 7, 0))
+      }
     }
-    if(obj.facing === "down"){
-      bulletsPT.push(new Bullet(obj.x + obj.width / 2, obj.y + obj.height, 0, 7))
-    }
-    if(obj.facing === "left"){
-      bulletsPT.push(new Bullet(obj.x, obj.y + obj.height / 2, -7, 0))
-    }
-    if(obj.facing === "right"){
-      bulletsPT.push(new Bullet(obj.x + obj.width, obj.y + obj.height / 2, 7, 0))
-    }
+    if (playerPT.weapon === "laser"){
+      if(obj.facing === "up"){
+        laserPT.push(new Laser(obj.x + obj.width / 2, obj.y, 10, 30, 0, -6))
+      }
+      if(obj.facing === "down"){
+        laserPT.push(new Laser(obj.x + obj.width / 2, obj.y + obj.height, 10, 30, 0, 6))
+      }
+      if(obj.facing === "left"){
+        laserPT.push(new Laser(obj.x, obj.y + obj.height / 2, 30, 10, -6, 0))
+      }
+      if(obj.facing === "right"){
+        laserPT.push(new Laser(obj.x + obj.width, obj.y + obj.height / 2, 30, 10, 6, 0))
+      }
+    } 
   }
   if (bool === true && obj === map3 || bool === true && obj === map4 || bool === true && obj === map5){
     bulletsMap.push(new Bullet(obj.x+obj.radius, obj.y, 5, 0))
@@ -77,39 +142,41 @@ function bulletsAppear(){
 
 //Bullets orders
 
+function bulletsBorders(arr){
+  for (i = 0; i<arr.length; i++){
+    if(arr[i].crashWithBorders() === false){
+      arr[i].draw();
+      arr[i].moveBullet();
+    }
+  
+    else if(arr[i].crashWithBorders() === true){
+      arr.splice(i,1);
+      i--;
+    }
+  }
+}
+
+function laserBorders(arr){
+  for (i = 0; i<arr.length; i++){
+    if(arr[i].crashWithBorders() === false){
+      
+      arr[i].draw();
+      arr[i].moveBullet();
+    }
+  
+    else if(arr[i].crashWithBorders() === true){
+     
+      arr.splice(i,1);
+      i--;
+    }
+  }
+}
+
 function bulletsOrders(){
   bulletsAppear()
-  for (i = 0; i<bulletsPT.length; i++){
-    if(bulletsPT[i].crashWithBorders() === false){
-      bulletsPT[i].draw();
-      bulletsPT[i].moveBullet();
-    }
-  
-    else if(bulletsPT[i].crashWithBorders() === true){
-      bulletsPT.splice(i,1);
-      i--;
-    }
-  }
-  for (i = 0; i<bulletsFT.length; i++){
-    if(bulletsFT[i].crashWithBorders() === false){
-      bulletsFT[i].draw();
-      bulletsFT[i].moveBullet();
-    }
-  
-    else if(bulletsFT[i].crashWithBorders() === true){
-      bulletsFT.splice(i,1);
-      i--;
-    }
-  }
-  for (i = 0; i<bulletsMap.length; i++){
-    if(bulletsMap[i].crashWithBorders() === false){
-      bulletsMap[i].draw();
-      bulletsMap[i].moveBullet();
-    }
-  
-    else if(bulletsMap[i].crashWithBorders() === true){
-      bulletsMap.splice(i,1);
-      i--;
-    }
-  }
+  bulletsBorders(bulletsPT);
+  bulletsBorders(bulletsFT);
+  laserBorders(laserPT);
+  laserBorders(laserFT);
+  bulletsBorders(bulletsMap);
 }

@@ -33,24 +33,30 @@ Component.prototype.moveComponent = function(){
 }
 
 //ball orders 
+
+function checkCrashWithComponents () {
+  for (i=0;i<balls.length;i++){
+    if (playerFT.crashWithComponents(balls[i]) === true){
+      playerFT.flag = false;
+      playerFT.x = playerFT.initialPosX;
+      playerFT.y = playerFT.initialPosY;
+    }
+  }
+
+  for (i=0;i<balls.length;i++){
+    if (playerPT.crashWithComponents(balls[i]) === true){
+      playerPT.flag = false;
+      playerPT.x = playerPT.initialPosX;
+      playerPT.y = playerPT.initialPosY;
+    }
+  }
+}
+
 function ballOrders(){
-  ball1.draw();
-  ball2.draw();
-  ball3.draw();
-  ball4.draw();
-  ball5.draw();
-  ball6.draw();
-  ball1.moveComponent();
-  ball2.moveComponent();
-  ball3.moveComponent();
-  ball4.moveComponent();
-  ball5.moveComponent();
-  ball6.moveComponent();
-  ball1.crashWithBorders();
-  ball2.crashWithBorders();
-  ball3.crashWithBorders();
-  ball4.crashWithBorders();
-  ball5.crashWithBorders();
-  ball6.crashWithBorders();
+  for(i = 0; i < balls.length; i++){
+    balls[i].draw();
+    balls[i].moveComponent();
+    balls[i].crashWithBorders();
+  }
   checkCrashWithComponents();
 }

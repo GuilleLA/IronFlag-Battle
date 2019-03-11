@@ -222,6 +222,22 @@ window.onload = function() {
         gun.play();
       time2 = setTimeout(_=> time2 = undefined, 800)}
         break;
+      case 67:
+        if(playerPT.weapon === "machine-gun"){
+          playerPT.weapon = "laser";
+        }
+        else{
+          playerPT.weapon = "machine-gun";
+        }
+        break;
+      case 79:
+        if(playerFT.weapon === "machine-gun"){
+          playerFT.weapon = "laser";
+        }
+        else{
+          playerFT.weapon = "machine-gun";
+        }
+        break;
     }
   }
 

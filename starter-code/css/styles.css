@@ -82,6 +82,7 @@ body {
   height: auto;
   display: block;
   margin: auto;
+  border: 5px solid black;
 }
 
 .button-round{
@@ -91,6 +92,16 @@ body {
   background-color: aqua;
   border-radius: 100%;
   letter-spacing: 10px;
+  border: 2px solid black;
+  box-shadow: 3px 5px wheat;
+}
+
+.button-round:hover {background-color: rgb(12, 184, 184)}
+
+.button-round:active {
+  background-color: rgb(12, 184, 184);
+  box-shadow: 3px 5px wheat;
+  transform: translateY(4px);
 }
 
 .button-round img{
@@ -114,6 +125,7 @@ div .rolePT {
   height: auto;
   display: block;
   margin: auto;
+  border: 5px solid black;
 }
 
 div .roleFT {
@@ -159,13 +171,24 @@ div .map {
 
 #start-button {
   width: 100%;
-  height: 50%;
+  height: 47%;
+  margin-bottom: 3%;
+  border: 2px solid black;
   background-color: aqua;
   color: black;
   font-size: 3rem;
   font-weight: 700;
   border-radius: 3%;
   letter-spacing: 10px;
+  box-shadow: 4px 8px wheat;
+}
+
+#start-button:hover {background-color: rgb(12, 184, 184)}
+
+#start-button:active {
+  background-color: rgb(12, 184, 184);
+  box-shadow: 4px 8px wheat;
+  transform: translateY(3px);
 }
 
 canvas {
