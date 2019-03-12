@@ -1,7 +1,7 @@
 
 <img src="starter-code/images/logo.png" width="250" height="250">
 
-# IRONFLAG BATTLE
+# IRONFLAG BATTLE :triangular_flag_on_post:
 
 Long time ago a war of pride started in Ironhack between the coders that attended to the part-time web developer course and those who attend to the full-time course. The armies were formed by three different type of soldiers:
 
@@ -20,7 +20,7 @@ This war was cold and brutal, many coders in both sides were burning their eyes 
 
 1. The winner would be the best out of 5 fights that will prove the ability of each pilot and the best engineering of their crafts.
 
-2. A point will be scored every time a craft can bring the opponent's flag to their own base. (But carefull we are in Ironhack, therefore the flags are made of Iron and carry them will make your craft slower).
+2. A point will be scored every time a craft can bring the opponent's flag :triangular_flag_on_post: to their own base. (But carefull we are in Ironhack, therefore the flags are made of Iron and carry them will make your craft slower).
 
 3. There are no more rules just **FIGHT** and **WIN**.
 
@@ -58,18 +58,18 @@ Each tank carries a machine gun and a laser gun.
 
 The pilot of the Part-time army will have the following controls:
 
-- UP - W
-- DOWN - S
-- LEFT - A
-- RIGHT - D
-- FIRE - V
-- CHANGE WEAPON - C 
+- UP - W :arrow_up:
+- DOWN - S :arrow_down:
+- LEFT - A :arrow_left:
+- RIGHT - D :arrow_right:
+- FIRE - V :boom:
+- CHANGE WEAPON - C :gun:
 
 The pilot of the Full-time army will have the following controls:
 
-- UP - Arrow up
-- DOWN - Arrow down
-- LEFT - Arrow left
-- RIGHT - Arrow Right
-- FIRE - P
-- CHANGE WEAPON - O 
+- UP - Arrow up :arrow_up:
+- DOWN - Arrow down :arrow_down:
+- LEFT - Arrow left :arrow_left:
+- RIGHT - Arrow Right :arrow_right:
+- FIRE - P :boom:
+- CHANGE WEAPON - O :gun:
