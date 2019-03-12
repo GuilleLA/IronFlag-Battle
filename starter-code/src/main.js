@@ -24,6 +24,10 @@ window.onload = function() {
     document.querySelector(".on").classList.add("hide");
     mainImage.classList.add("hide");
     selection.classList.add("hide");
+    infoBoxLife[0].classList.remove("hide")
+    infoBoxLife[1].classList.remove("hide")
+    infoBoxWeapon[0].classList.remove("hide")
+    infoBoxWeapon[1].classList.remove("hide")
     myGameArea.start();
   };
   
@@ -103,6 +107,7 @@ window.onload = function() {
     canvasBkg = 0;
     backgroundSelect = gamebkg[0]
     bodysel.setAttribute("style", 'background-image: url("images/background.png")')
+    mainImage.setAttribute("style", 'background-image: url("images/paisaje\ .gif")')
     iceDiv.classList.remove("selected");
     forestDiv.classList.remove("selected");
     ftRoleArray[0].setAttribute("style", 'color: wheat;')
@@ -121,6 +126,7 @@ window.onload = function() {
     canvasBkg = 1;
     backgroundSelect = gamebkg[1]
     bodysel.setAttribute("style", 'background-image: url("images/icebkg.jpg")')
+    mainImage.setAttribute("style", 'background-image: url("images/paisaje_blanco.gif")')
     marsDiv.classList.remove("selected");
     forestDiv.classList.remove("selected");
     ftRoleArray[0].setAttribute("style", 'color: red;')
@@ -139,6 +145,7 @@ window.onload = function() {
     canvasBkg = 2;
     backgroundSelect = gamebkg[2]
     bodysel.setAttribute("style", 'background-image: url("images/forestbkg.png")')
+    mainImage.setAttribute("style", 'background-image: url("images/paisaje_tierra.gif")')
     iceDiv.classList.remove("selected");
     marsDiv.classList.remove("selected");
     ftRoleArray[0].setAttribute("style", 'color: aqua;')
@@ -225,17 +232,25 @@ window.onload = function() {
       case 67:
         if(playerPT.weapon === "machine-gun"){
           playerPT.weapon = "laser";
+          machinePT.classList.add("hide")
+          laserPTImg.classList.remove("hide")
         }
         else{
           playerPT.weapon = "machine-gun";
+          laserPTImg.classList.add("hide")
+          machinePT.classList.remove("hide")
         }
         break;
       case 79:
         if(playerFT.weapon === "machine-gun"){
           playerFT.weapon = "laser";
+          machineFT.classList.add("hide")
+          laserFTImg.classList.remove("hide")
         }
         else{
           playerFT.weapon = "machine-gun";
+          laserFTImg.classList.add("hide")
+          machineFT.classList.remove("hide")
         }
         break;
     }

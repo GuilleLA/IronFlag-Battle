@@ -7,7 +7,8 @@ function Player (width, height, x, y, facing){
   this.y = y;
   this.facing = facing;
   this.flag = false;
-  this.weapon = "machine-gun"
+  this.weapon = "machine-gun";
+  this.life = 2;
   
 }
 var tankPTImg = [new Image(), new Image(), new Image(), new Image()]
@@ -190,15 +191,28 @@ var key86 = false;
 
 //Player orders
 
-function bulletsCrash(obj, arr) {
+function bulletsCrash(obj, arr, sel1, sel2) {
   if(arr[0]){
     for (i=0;i<arr.length;i++){
       if (obj.crashWithComponents(arr[i]) === true){
-        obj.flag = false;
-        obj.x = obj.initialPosX;
-        obj.y = obj.initialPosY;
-        arr.splice(i,1);
-        i--;
+        if(obj.life === 1){
+          sel1.classList.remove("hide");
+          sel2.classList.add("hide");
+          obj.flag = false;
+          obj.life = 2;
+          obj.x = obj.initialPosX;
+          obj.y = obj.initialPosY;
+          arr.splice(i,1);
+          i--;
+          continue;
+        }
+        if(obj.life === 2){
+          sel1.classList.add("hide");
+          sel2.classList.remove("hide");
+          obj.life = 1;
+          arr.splice(i,1);
+          i--;
+        }
       }
     }
   }
@@ -227,10 +241,10 @@ function playerOrders () {
   playerFTmotion()
   playerPT.carryFlag(flagFT);
   playerFT.carryFlag(flagPT);
-  bulletsCrash(playerPT, bulletsFT);
-  bulletsCrash(playerFT, bulletsPT);
-  bulletsCrash(playerPT, bulletsMap);
-  bulletsCrash(playerFT, bulletsMap);
+  bulletsCrash(playerPT, bulletsFT, life2PT, damagePT);
+  bulletsCrash(playerFT, bulletsPT, life2FT, damageFT);
+  bulletsCrash(playerPT, bulletsMap, life2PT, damagePT);
+  bulletsCrash(playerFT, bulletsMap, life2FT, damageFT);
   crashWithLaser(playerPT, laserFT);
   crashWithLaser(playerFT, laserPT);
 }

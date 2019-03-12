@@ -1,5 +1,15 @@
 //Selectors variables
 var bodysel = document.querySelector("body");
+var infoBoxLife = document.getElementsByClassName("info-box-life");
+var infoBoxWeapon = document.getElementsByClassName("info-box-weapon");
+var machinePT = document.querySelector(".machinePT");
+var machineFT = document.querySelector(".machineFT");
+var laserPTImg = document.querySelector(".laserPT");
+var laserFTImg = document.querySelector(".laserFT");
+var life2PT = document.querySelector(".life2PT");
+var life2FT = document.querySelector(".life2FT");
+var damagePT = document.querySelector(".damagePT");
+var damageFT = document.querySelector(".damageFT");
 var mainImage = document.querySelector(".main-image");
 var selection = document.querySelector(".selection");
 var scoreBoard = document.querySelector(".score-board");
@@ -164,6 +174,18 @@ function reset() {
     bulletsPT = [];
     bulletsFT = [];
     bulletsMap = [];
+    life2PT.classList.remove("hide");
+    damagePT.classList.add("hide");
+    life2FT.classList.remove("hide");
+    damageFT.classList.add("hide");
+    playerPT.life = 2;
+    playerFT.life = 2;
+    playerPT.weapon = "machine gun";
+    laserPTImg.classList.add("hide")
+    machinePT.classList.remove("hide");
+    playerFT.weapon = "machine gun";
+    laserFTImg.classList.add("hide");
+          machineFT.classList.remove("hide")
     var canvasSel = document.querySelector("canvas")
     scorePtHtml.innerHTML = "<p>Part-time Ironhacker</p>" + scorePT;
     scoreFtHtml.innerHTML = "<p>Full-time Ironhacker</p>" + scoreFT;
@@ -186,6 +208,12 @@ function reset() {
     bulletsPT = [];
     bulletsFT = [];
     bulletsMap = [];
+    life2PT.classList.remove("hide");
+    damagePT.classList.add("hide");
+    life2FT.classList.remove("hide");
+    damageFT.classList.add("hide");
+    playerPT.life = 2;
+    playerFT.life = 2;
     var canvasSel = document.querySelector("canvas");
     canvasSel.classList.add("hide");
     if (scorePT > scoreFT){winner.innerHTML = "Part-time Ironhacker won";}
