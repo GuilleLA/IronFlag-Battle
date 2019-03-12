@@ -145,6 +145,18 @@ div .roleFT {
   height: 50%;
 }
 
+.mars-sel{
+  border: 2px solid black;
+}
+
+.ice-sel{
+  border: 2px solid black;
+}
+
+.forest-sel{
+  border: 2px solid black;
+}
+
 .mars-sel img{
   width: 100%;
 }

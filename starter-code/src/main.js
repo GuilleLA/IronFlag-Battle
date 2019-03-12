@@ -2,7 +2,9 @@ var time;
 var time2;
 var canvasBkg = 0;
 var intro = document.querySelector("audio");
-gun = new Audio("sounds/gun.mp3");
+gun = new Audio("sounds/gunshort.mp3");
+machine = new Audio("sounds/machineshort.mp3");
+laser = new Audio("sounds/lasershort.mp3");
 window.onload = function() {
   
   creationOfObjects();
@@ -220,15 +222,31 @@ window.onload = function() {
         key39 = true;
         break;
       case 80:
-      if(!time){ key80 = true;
-        gun.play(); 
-        time = setTimeout(_=> time = undefined, 800)}
-        break;
+        if(playerFT.weapon === "machine-gun"){ 
+          if(!time){ key80 = true;
+            gun.play();
+            time = setTimeout(_=> time = undefined, 200)}
+          break;
+          }
+        if (playerFT.weapon === "laser"){
+          laser.play(); 
+          if(!time){ key80 = true;
+            time = setTimeout(_=> time = undefined, 900)}
+          break;
+          }
       case 86:
-      if(!time2) {key86 = true;
-        gun.play();
-      time2 = setTimeout(_=> time2 = undefined, 800)}
-        break;
+        if(playerPT.weapon === "machine-gun"){
+          if(!time2) {key86 = true;
+            gun.play();
+            time2 = setTimeout(_=> time2 = undefined, 200)}
+          break;
+        }
+        if (playerFT.weapon === "laser"){
+          laser.play();
+          if(!time2) {key86 = true;
+            time2 = setTimeout(_=> time2 = undefined, 900)}
+          break;
+        }
       case 67:
         if(playerPT.weapon === "machine-gun"){
           playerPT.weapon = "laser";
