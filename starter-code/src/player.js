@@ -9,6 +9,7 @@ function Player (width, height, x, y, facing){
   this.flag = false;
   this.weapon = "machine-gun";
   this.life = 2;
+
   
 }
 var tankPTImg = [new Image(), new Image(), new Image(), new Image()]

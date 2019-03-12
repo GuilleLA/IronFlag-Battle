@@ -225,7 +225,7 @@ window.onload = function() {
         if(playerFT.weapon === "machine-gun"){ 
           if(!time){ key80 = true;
             gun.play();
-            time = setTimeout(_=> time = undefined, 200)}
+            time = setTimeout(_=> time = undefined, 300)}
           break;
           }
         if (playerFT.weapon === "laser"){
@@ -238,7 +238,7 @@ window.onload = function() {
         if(playerPT.weapon === "machine-gun"){
           if(!time2) {key86 = true;
             gun.play();
-            time2 = setTimeout(_=> time2 = undefined, 200)}
+            time2 = setTimeout(_=> time2 = undefined, 300)}
           break;
         }
         if (playerFT.weapon === "laser"){

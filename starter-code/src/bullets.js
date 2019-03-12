@@ -156,27 +156,11 @@ function bulletsBorders(arr){
   }
 }
 
-function laserBorders(arr){
-  for (i = 0; i<arr.length; i++){
-    if(arr[i].crashWithBorders() === false){
-      
-      arr[i].draw();
-      arr[i].moveBullet();
-    }
-  
-    else if(arr[i].crashWithBorders() === true){
-     
-      arr.splice(i,1);
-      i--;
-    }
-  }
-}
-
 function bulletsOrders(){
   bulletsAppear()
   bulletsBorders(bulletsPT);
   bulletsBorders(bulletsFT);
-  laserBorders(laserPT);
-  laserBorders(laserFT);
+  bulletsBorders(laserPT);
+  bulletsBorders(laserFT);
   bulletsBorders(bulletsMap);
 }
