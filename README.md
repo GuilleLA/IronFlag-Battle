@@ -5,11 +5,11 @@
 
 Long time ago a war of pride started in Ironhack between the coders that attended to the part-time web developer course and those who attend to the full-time course. The armies were formed by three different type of soldiers:
 
-- **Soldiers from the forests of planet Earth**: This soldiers, also know as **Front-end developers**, are very skilled when they have to design uniforms, maps, structure of weapons... everything that an army needs to go to war with the most comfortable equipment.
+- **Soldiers from the forests of planet Earth**: This soldiers, also know as **Front-end developers**, love nature :rose: and are very skilled when they have to design uniforms, maps, structure of weapons etc... Everything that an army needs to go to war with the most comfortable equipment.
 
-- **Soldiers from the artic places of planet Earth**: This soldier, also known as **Back-end developers**, are rough and cold people, that are incredibly skilled giving functionality to the designs made by the people of the forest.
+- **Soldiers from the artic places of planet Earth**: This soldier, also known as **Back-end developers**, are rough and cold people that love pizza :pizza:, they are incredibly skilled giving functionality to the designs made by the people of the forest.
 
-- **Soldiers from Mars**: Finally there is are rare, but amazing type of soldier the **Full-stack developer**, that has been able to master the skills of all the inhabitants of planet Earth and can give a deeper vision on the combination of design and functionality.
+- **Soldiers from Mars**: Finally there is are rare, but amazing type of soldier the **Full-stack developer** :alien:, that has been able to master the skills of all the inhabitants of planet Earth and can give a deeper vision on the combination of design and functionality.
 
 <img src="starter-code/images/02munecofondo.jpg" width="250" height="450">    <img src="starter-code/images/01munecofondo.jpg" width="250" height="450">    <img src="starter-code/images/03munecofondo.jpg" width="250" height="450">
 
@@ -20,7 +20,7 @@ This war was cold and brutal, many coders in both sides were burning their eyes 
 
 1. The winner would be the best out of 5 fights that will prove the ability of each pilot and the best engineering of their crafts.
 
-2. A point will be score every time a craft can bring the opponet's flag to their own base. (But carefull we are in Ironhack, therefore the flags are made of Iron and carry them will make your craft slower).
+2. A point will be scored every time a craft can bring the opponent's flag to their own base. (But carefull we are in Ironhack, therefore the flags are made of Iron and carry them will make your craft slower).
 
 3. There are no more rules just **FIGHT** and **WIN**.
 
@@ -46,6 +46,14 @@ The war could take place in three different places:
 
 - Stage 5: Both armies are so skilled developers that they hacked into the enemy pilot craft and now controls are reversed.
 
+### Weapons
+
+Each tank carries a machine gun and a laser gun.
+
+- The machine gun shoots fast but will only damage the tank. You need tow bullets to kill the enemy.
+
+- The laser gun takes time to charge the energy to fire it. However, if it hits the enemy, it will kill instantly.
+
 ## Controls
 
 The pilot of the Part-time army will have the following controls:
@@ -54,7 +62,8 @@ The pilot of the Part-time army will have the following controls:
 - DOWN - S
 - LEFT - A
 - RIGHT - D
-- FIRE - V 
+- FIRE - V
+- CHANGE WEAPON - C 
 
 The pilot of the Full-time army will have the following controls:
 
@@ -63,4 +72,4 @@ The pilot of the Full-time army will have the following controls:
 - LEFT - Arrow left
 - RIGHT - Arrow Right
 - FIRE - P
-
+- CHANGE WEAPON - O 
