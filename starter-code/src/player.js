@@ -9,7 +9,8 @@ function Player (width, height, x, y, facing){
   this.flag = false;
   this.weapon = "machine-gun";
   this.life = 2;
-
+  this.bullets = [];
+  this.laser = [];
   
 }
 var tankPTImg = [new Image(), new Image(), new Image(), new Image()]
@@ -242,10 +243,10 @@ function playerOrders () {
   playerFTmotion()
   playerPT.carryFlag(flagFT);
   playerFT.carryFlag(flagPT);
-  bulletsCrash(playerPT, bulletsFT, life2PT, damagePT);
-  bulletsCrash(playerFT, bulletsPT, life2FT, damageFT);
+  bulletsCrash(playerPT, playerFT.bullets, life2PT, damagePT);
+  bulletsCrash(playerFT, playerPT.bullets, life2FT, damageFT);
   bulletsCrash(playerPT, bulletsMap, life2PT, damagePT);
   bulletsCrash(playerFT, bulletsMap, life2FT, damageFT);
-  crashWithLaser(playerPT, laserFT);
-  crashWithLaser(playerFT, laserPT);
+  crashWithLaser(playerPT, playerFT.laser);
+  crashWithLaser(playerFT, playerPT.laser);
 }

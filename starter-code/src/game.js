@@ -171,8 +171,8 @@ function reset() {
     flagFT.y = flagFT.initialPosY;
     flagPT.x = flagPT.initialPosX;
     flagPT.y = flagPT.initialPosY;
-    bulletsPT = [];
-    bulletsFT = [];
+    playerPT.bullets = [];
+    playerFTbullets = [];
     bulletsMap = [];
     life2PT.classList.remove("hide");
     damagePT.classList.add("hide");
@@ -205,8 +205,8 @@ function reset() {
     flagFT.y = flagFT.initialPosY;
     flagPT.x = flagPT.initialPosX;
     flagPT.y = flagPT.initialPosY;
-    bulletsPT = [];
-    bulletsFT = [];
+    playerPT.bullets = [];
+    playerFTbullets = [];
     bulletsMap = [];
     life2PT.classList.remove("hide");
     damagePT.classList.add("hide");
