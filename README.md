@@ -54,6 +54,8 @@ Each tank carries a machine gun and a laser gun.
 
 - The laser gun takes time to charge the energy to fire it. However, if it hits the enemy, it will kill instantly.
 
+- The super power. Each tank can load a super energy ball that when fired will follow the enemy until it hits him and kill him.
+
 ## Controls
 
 The pilot of the Part-time army will have the following controls:
@@ -64,6 +66,7 @@ The pilot of the Part-time army will have the following controls:
 - RIGHT - D :arrow_right:
 - FIRE - V :boom:
 - CHANGE WEAPON - C :gun:
+- POWER - X
 
 The pilot of the Full-time army will have the following controls:
 
@@ -73,3 +76,4 @@ The pilot of the Full-time army will have the following controls:
 - RIGHT - Arrow Right :arrow_right:
 - FIRE - P :boom:
 - CHANGE WEAPON - O :gun:
+- POWER - I
