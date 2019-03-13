@@ -89,23 +89,20 @@ var myGameArea = {
 //Cambios por frame
 function updateGameArea() {
   if (stage === 1){
-    myGameArea.clearArea();
-    myGameArea.frame +=1;
+    alwaysCall();
     playerOrders();
     bulletsOrders();
     flagOrders();
   }
   if (stage === 2){
-    myGameArea.clearArea();
-    myGameArea.frame +=1;
+    alwaysCall();
     mapOrders();
     bulletsOrders();
     playerOrders();
     flagOrders();
   }
   if (stage === 3){
-    myGameArea.clearArea();
-    myGameArea.frame +=1;
+    alwaysCall();
     mapOrders();
     bulletsOrders();
     ballOrders();
@@ -113,8 +110,7 @@ function updateGameArea() {
     flagOrders();
   }
   if (stage === 4){
-    myGameArea.clearArea();
-    myGameArea.frame +=1;
+    alwaysCall();
     mapOrders();
     bulletsOrders();
     ballOrders();
@@ -131,6 +127,13 @@ function updateGameArea() {
     playerOrders();
     flagOrders(); 
   }    
+}
+
+function alwaysCall() {
+  myGameArea.clearArea();
+  myGameArea.frame +=1;
+  playerFT.loadPower();
+  playerPT.loadPower();
 }
 
 //Creation of objects

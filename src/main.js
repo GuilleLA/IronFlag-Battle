@@ -241,7 +241,7 @@ window.onload = function() {
             time2 = setTimeout(_=> time2 = undefined, 300)}
           break;
         }
-        if (playerFT.weapon === "laser"){
+        if (playerPT.weapon === "laser"){
           laser.play();
           if(!time2) {key86 = true;
             time2 = setTimeout(_=> time2 = undefined, 900)}
@@ -269,6 +269,18 @@ window.onload = function() {
           playerFT.weapon = "machine-gun";
           laserFTImg.classList.add("hide")
           machineFT.classList.remove("hide")
+        }
+        break;
+      case 73:
+        if(playerFT.power >= 420){
+          key73 = true;
+          playerFT.power = 0;
+        }
+        break;
+      case 88:
+        if(playerPT.power >= 420){
+          key88 = true;
+          playerPT.power = 0;
         }
         break;
     }

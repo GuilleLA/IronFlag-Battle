@@ -11,6 +11,8 @@ function Player (width, height, x, y, facing){
   this.life = 2;
   this.bullets = [];
   this.laser = [];
+  this.power = 420;
+  this.powerArray = [];
   
 }
 var tankPTImg = [new Image(), new Image(), new Image(), new Image()]
@@ -37,6 +39,12 @@ Player.prototype.draw = function(img) {
   }
   if (this.facing === "left"){
     ctx.drawImage(img[3], this.x, this.y, this.width, this.height);
+  }
+}
+
+Player.prototype.loadPower = function() {
+  if (this.power < 420){
+    this.power++
   }
 }
 
@@ -190,6 +198,8 @@ var key37 = false;
 var key39 = false;
 var key80 = false;
 var key86 = false;
+var key88 = false;
+var key73 = false;
 
 //Player orders
 
@@ -220,7 +230,24 @@ function bulletsCrash(obj, arr, sel1, sel2) {
   }
 }
 
-function crashWithLaser(obj, arr) {
+function powerCrash(obj, arr, sel1, sel2) {
+  if(arr[0]){
+    for (i=0;i<arr.length;i++){
+      if (obj.crashWithComponents(arr[i]) === true){
+          sel1.classList.remove("hide");
+          sel2.classList.add("hide");
+          obj.flag = false;
+          obj.life = 2;
+          obj.x = obj.initialPosX;
+          obj.y = obj.initialPosY;
+          arr.splice(i,1);
+          i--;
+      }
+    }
+  }
+}
+
+function crashWithLaser(obj, arr, sel1, sel2) {
   if(arr[0]){
     for (i=0;i<arr.length;i++){
       if (obj.laserCrash(arr[i]) === true){
@@ -229,6 +256,8 @@ function crashWithLaser(obj, arr) {
         obj.y = obj.initialPosY;
         arr.splice(i,1);
         i--;
+        sel1.classList.remove("hide");
+        sel2.classList.add("hide");
       }
     }
   }
@@ -247,6 +276,8 @@ function playerOrders () {
   bulletsCrash(playerFT, playerPT.bullets, life2FT, damageFT);
   bulletsCrash(playerPT, bulletsMap, life2PT, damagePT);
   bulletsCrash(playerFT, bulletsMap, life2FT, damageFT);
-  crashWithLaser(playerPT, playerFT.laser);
-  crashWithLaser(playerFT, playerPT.laser);
+  crashWithLaser(playerPT, playerFT.laser, life2PT, damagePT);
+  crashWithLaser(playerFT, playerPT.laser, life2FT, damageFT);
+  powerCrash(playerPT, playerFT.powerArray, life2PT, damagePT);
+  powerCrash(playerFT, playerPT.powerArray, life2FT, damageFT);
 }

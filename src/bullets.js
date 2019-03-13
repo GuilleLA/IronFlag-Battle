@@ -1,5 +1,6 @@
 var bulletsMap = [];
-
+var imagePower = new Image();
+imagePower.src = "images/electricball1.png";
 
 function Bullet(x, y, speedX, speedY) {
   this.x = x;
@@ -61,6 +62,59 @@ Laser.prototype.crashWithBorders = function(){
   }
 }
 
+//Power bullet
+
+function PowerBullet (x,y) {
+  this.x = x;
+  this.y = y;
+  this.radius = 10;
+  this.speedX = 2;
+  this.speedY = 2;
+}
+
+PowerBullet.prototype.draw = function() {
+  ctx = myGameArea.canvas.getContext("2d");
+  ctx.fillStyle = "yellow";
+  ctx.globalAlpha = 1;
+  ctx.beginPath();
+  ctx.arc(this.x, this.y, this.radius, 0, Math.PI*2, true);
+  ctx.fill();
+  ctx.drawImage(imagePower, (this.x - this.radius), (this.y - this.radius), 40, 40)
+}
+
+PowerBullet.prototype.moveBullet = function(obj){
+  var x = obj.x - this.x;
+  var y = obj.y - this.y;
+  var dist = Math.sqrt(x * x + y * y);
+  x /= dist;
+  y /= dist;
+  this.x += x * this.speedX 
+  this.y += y * this.speedY
+}
+
+PowerBullet.prototype.crashWithBorders = function(){
+  if((this.x + this.radius) >= 800 || (this.x + this.radius) <= 0 || (this.y + this.radius) >= 800 || (this.y + this.radius) <= 0){
+    return true;
+  }
+  else{return false}
+}
+
+
+
+function getNormVec(obj, arr){
+  if(arr[0]){
+    for (i = 0; i<arr.length; i++){
+      var x = obj.x - arr[i].x;
+      var y = obj.y - arr[i].y;
+      var dist = Math.sqrt(x * x + y * y);
+      x /= dist;
+      y /= dist;
+      this.x += x * this.speedX 
+      this.y += y * this.speedY
+    }
+  }
+} 
+
 //Creation of bullets
 function bulletCreation(bool, obj){
   if (bool === true){
@@ -78,7 +132,7 @@ function bulletCreation(bool, obj){
        obj.bullets.push(new Bullet(obj.x + obj.width, obj.y + obj.height / 2, 7, 0))
       }
     }
-    if (playerFT.weapon === "laser"){
+    if (obj.weapon === "laser"){
       if(obj.facing === "up"){
         obj.laser.push(new Laser(obj.x + obj.width / 2, obj.y, 10, 30, 0, -6))
       }
@@ -101,10 +155,29 @@ function bulletCreation(bool, obj){
   }
 }
 
+function powerCreation(bool, obj){
+  if (bool === true){
+    if(obj.facing === "up"){
+      obj.powerArray.push(new PowerBullet(obj.x + obj.width / 2, obj.y))
+    }
+    if(obj.facing === "down"){
+      obj.powerArray.push(new PowerBullet(obj.x + obj.width / 2, obj.y + obj.height))
+    }
+    if(obj.facing === "left"){
+      obj.powerArray.push(new PowerBullet(obj.x, obj.y + obj.height / 2))
+    }
+    if(obj.facing === "right"){
+      obj.powerArray.push(new PowerBullet(obj.x + obj.width, obj.y + obj.height / 2))
+    }
+  }
+}
+
 function bulletsAppear(){
   bulletCreation(key80, playerFT);
   bulletCreation(key86, playerPT);
-  key80 = key86 = false;
+  powerCreation(key73, playerFT);
+  powerCreation(key88, playerPT);
+  key80 = key86 = key88 = key73 = false;
 }
 
 //Bullets orders
@@ -123,11 +196,27 @@ function bulletsBorders(arr){
   }
 }
 
+function powerBulletsBorders(arr, obj){
+  for (i = 0; i<arr.length; i++){
+    if(arr[i].crashWithBorders() === false){
+      arr[i].draw();
+      arr[i].moveBullet(obj);
+    }
+  
+    else if(arr[i].crashWithBorders() === true){
+      arr.splice(i,1);
+      i--;
+    }
+  }
+}
+
 function bulletsOrders(){
   bulletsAppear()
   bulletsBorders(playerPT.bullets);
   bulletsBorders(playerFT.bullets);
   bulletsBorders(playerPT.laser);
   bulletsBorders(playerFT.laser);
+  powerBulletsBorders(playerPT.powerArray, playerFT);
+  powerBulletsBorders(playerFT.powerArray, playerPT);
   bulletsBorders(bulletsMap);
 }
