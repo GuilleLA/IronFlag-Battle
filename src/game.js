@@ -2,6 +2,8 @@
 var bodysel = document.querySelector("body");
 var infoBoxLife = document.getElementsByClassName("info-box-life");
 var infoBoxWeapon = document.getElementsByClassName("info-box-weapon");
+var infoBoxPower = document.getElementsByClassName("info-box-power");
+var prueba = document.getElementsByClassName("prueba");
 var machinePT = document.querySelector(".machinePT");
 var machineFT = document.querySelector(".machineFT");
 var laserPTImg = document.querySelector(".laserPT");
@@ -130,6 +132,16 @@ function updateGameArea() {
 }
 
 function alwaysCall() {
+  if (myGameArea.frame === 0){
+    prueba[0].classList.add("progress2")
+    prueba[1].classList.add("progress2")
+  }
+  if (playerFT.power === 0){
+    prueba[1].classList.add("progress2")
+  }
+  if (playerPT.power === 0){
+    prueba[0].classList.add("progress2")
+  }
   myGameArea.clearArea();
   myGameArea.frame +=1;
   playerFT.loadPower();
@@ -162,6 +174,9 @@ function creationOfObjects(){
 //reset between stages
 function reset() {
   if (stage < 6){
+    playerFT.power = 0;
+    playerPT.power = 0;
+    myGameArea.frame = 0;
     playerFT.flag = false;
     playerFT.x = playerFT.initialPosX;
     playerFT.y = playerFT.initialPosY;
@@ -196,6 +211,9 @@ function reset() {
     scoreBoard.classList.remove("hide");
   }
   else{
+    playerFT.power = 0;
+    playerPT.power = 0;
+    myGameArea.frame = 0;
     playerFT.flag = false;
     playerFT.x = playerFT.initialPosX;
     playerFT.y = playerFT.initialPosY;

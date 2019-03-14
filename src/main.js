@@ -30,6 +30,8 @@ window.onload = function() {
     infoBoxLife[1].classList.remove("hide")
     infoBoxWeapon[0].classList.remove("hide")
     infoBoxWeapon[1].classList.remove("hide")
+    infoBoxPower[0].classList.remove("hide")
+    infoBoxPower[1].classList.remove("hide")
     myGameArea.start();
   };
   
@@ -275,12 +277,14 @@ window.onload = function() {
         if(playerFT.power >= 420){
           key73 = true;
           playerFT.power = 0;
+          prueba[1].classList.remove("progress2")
         }
         break;
       case 88:
         if(playerPT.power >= 420){
           key88 = true;
           playerPT.power = 0;
+          prueba[0].classList.remove("progress2")
         }
         break;
     }

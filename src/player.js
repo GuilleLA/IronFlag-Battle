@@ -11,7 +11,7 @@ function Player (width, height, x, y, facing){
   this.life = 2;
   this.bullets = [];
   this.laser = [];
-  this.power = 420;
+  this.power = 0;
   this.powerArray = [];
   
 }
