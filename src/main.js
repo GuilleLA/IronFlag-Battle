@@ -6,6 +6,7 @@ gun = new Audio("sounds/gunshort.mp3");
 machine = new Audio("sounds/machineshort.mp3");
 laser = new Audio("sounds/lasershort.mp3");
 energyCanon = new Audio("sounds/energyshot.mp3");
+explosionEffect = new Audio("sounds/Explosion.mp3");
 window.onload = function() {
   
   creationOfObjects();

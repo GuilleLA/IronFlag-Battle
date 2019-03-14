@@ -231,6 +231,7 @@ function bulletsCrash(obj, arr, sel1, sel2) {
           obj.deadX = obj.x;
           obj.deadY = obj.y;
           explodeTank(obj);
+          explosionEffect.play();
           sel1.classList.remove("hide");
           sel2.classList.add("hide");
           obj.flag = false;
@@ -259,6 +260,7 @@ function powerCrash(obj, arr, sel1, sel2) {
       if (obj.crashWithComponents(arr[i]) === true){
         obj.explosion = 0;
         explodeTank(obj);
+        explosionEffect.play();
         obj.deadX = obj.x;
         obj.deadY = obj.y;
         sel1.classList.remove("hide");
@@ -280,6 +282,7 @@ function crashWithLaser(obj, arr, sel1, sel2) {
       if (obj.laserCrash(arr[i]) === true){
         obj.explosion = 0;
         explodeTank(obj);
+        explosionEffect.play();
         obj.deadX = obj.x;
         obj.deadY = obj.y;
         obj.explosion = 0;
