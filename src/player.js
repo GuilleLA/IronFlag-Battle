@@ -13,6 +13,9 @@ function Player (width, height, x, y, facing){
   this.laser = [];
   this.power = 0;
   this.powerArray = [];
+  this.explosion = 25;
+  this.deadX;
+  this.deadY;
   
 }
 var tankPTImg = [new Image(), new Image(), new Image(), new Image()]
@@ -41,10 +44,23 @@ Player.prototype.draw = function(img) {
     ctx.drawImage(img[3], this.x, this.y, this.width, this.height);
   }
 }
+var explosion = new Image();
+explosion.src = "images/Explosion.png"
+Player.prototype.drawExplosion = function(){
+  ctx = myGameArea.canvas.getContext("2d");
+  ctx.globalAlpha = 1;
+  ctx.drawImage(explosion, this.deadX, this.deadY, this.width,this.height);
+}
 
 Player.prototype.loadPower = function() {
   if (this.power < 420){
     this.power++
+  }
+}
+
+Player.prototype.loadDead = function() {
+  if (this.explosion < 300){
+    this.explosion++
   }
 }
 
@@ -202,12 +218,18 @@ var key88 = false;
 var key73 = false;
 
 //Player orders
+var deadX;
+var deadY;
+
 
 function bulletsCrash(obj, arr, sel1, sel2) {
   if(arr[0]){
     for (i=0;i<arr.length;i++){
       if (obj.crashWithComponents(arr[i]) === true){
         if(obj.life === 1){
+          obj.explosion = 0;
+          obj.deadX = obj.x;
+          obj.deadY = obj.y;
           explodeTank(obj);
           sel1.classList.remove("hide");
           sel2.classList.add("hide");
@@ -235,7 +257,10 @@ function powerCrash(obj, arr, sel1, sel2) {
   if(arr[0]){
     for (i=0;i<arr.length;i++){
       if (obj.crashWithComponents(arr[i]) === true){
+        obj.explosion = 0;
         explodeTank(obj);
+        obj.deadX = obj.x;
+        obj.deadY = obj.y;
         sel1.classList.remove("hide");
         sel2.classList.add("hide");
         obj.flag = false;
@@ -253,7 +278,11 @@ function crashWithLaser(obj, arr, sel1, sel2) {
   if(arr[0]){
     for (i=0;i<arr.length;i++){
       if (obj.laserCrash(arr[i]) === true){
+        obj.explosion = 0;
         explodeTank(obj);
+        obj.deadX = obj.x;
+        obj.deadY = obj.y;
+        obj.explosion = 0;
         obj.flag = false;
         obj.x = obj.initialPosX;
         obj.y = obj.initialPosY;

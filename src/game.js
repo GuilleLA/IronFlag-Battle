@@ -91,6 +91,7 @@ var myGameArea = {
 //Cambios por frame
 function updateGameArea() {
   if (stage === 1){
+    playerFT.drawExplosion();
     alwaysCall();
     playerOrders();
     bulletsOrders();
@@ -143,9 +144,17 @@ function alwaysCall() {
     loadBar[0].classList.add("progress2")
   }
   myGameArea.clearArea();
+  if (playerFT.explosion < 25){
+    playerFT.drawExplosion();
+  }
+  if (playerPT.explosion < 25){
+    playerPT.drawExplosion();
+  }
   myGameArea.frame +=1;
   playerFT.loadPower();
   playerPT.loadPower();
+  playerFT.loadDead();
+  playerPT.loadDead();
 }
 
 //Creation of objects
