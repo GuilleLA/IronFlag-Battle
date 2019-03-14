@@ -208,6 +208,7 @@ function bulletsCrash(obj, arr, sel1, sel2) {
     for (i=0;i<arr.length;i++){
       if (obj.crashWithComponents(arr[i]) === true){
         if(obj.life === 1){
+          explodeTank(obj);
           sel1.classList.remove("hide");
           sel2.classList.add("hide");
           obj.flag = false;
@@ -234,14 +235,15 @@ function powerCrash(obj, arr, sel1, sel2) {
   if(arr[0]){
     for (i=0;i<arr.length;i++){
       if (obj.crashWithComponents(arr[i]) === true){
-          sel1.classList.remove("hide");
-          sel2.classList.add("hide");
-          obj.flag = false;
-          obj.life = 2;
-          obj.x = obj.initialPosX;
-          obj.y = obj.initialPosY;
-          arr.splice(i,1);
-          i--;
+        explodeTank(obj);
+        sel1.classList.remove("hide");
+        sel2.classList.add("hide");
+        obj.flag = false;
+        obj.life = 2;
+        obj.x = obj.initialPosX;
+        obj.y = obj.initialPosY;
+        arr.splice(i,1);
+        i--;
       }
     }
   }
@@ -251,6 +253,7 @@ function crashWithLaser(obj, arr, sel1, sel2) {
   if(arr[0]){
     for (i=0;i<arr.length;i++){
       if (obj.laserCrash(arr[i]) === true){
+        explodeTank(obj);
         obj.flag = false;
         obj.x = obj.initialPosX;
         obj.y = obj.initialPosY;

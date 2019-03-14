@@ -5,6 +5,7 @@ var intro = document.querySelector("audio");
 gun = new Audio("sounds/gunshort.mp3");
 machine = new Audio("sounds/machineshort.mp3");
 laser = new Audio("sounds/lasershort.mp3");
+energyCanon = new Audio("sounds/energyshot.mp3");
 window.onload = function() {
   
   creationOfObjects();
@@ -276,6 +277,7 @@ window.onload = function() {
       case 73:
         if(playerFT.power >= 420){
           key73 = true;
+          energyCanon.play();
           playerFT.power = 0;
           loadBar[1].classList.remove("progress2")
         }
@@ -283,6 +285,7 @@ window.onload = function() {
       case 88:
         if(playerPT.power >= 420){
           key88 = true;
+          energyCanon.play();          
           playerPT.power = 0;
           loadBar[0].classList.remove("progress2")
         }

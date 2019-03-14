@@ -258,3 +258,15 @@ function reset() {
   }
 }
 
+function explodeTank(obj){
+  obj.bullets.push(new Bullet(obj.x, obj.y, -7, -7))
+  obj.bullets.push(new Bullet(obj.x + obj.width / 2, obj.y, 0, -7))
+  obj.bullets.push(new Bullet(obj.x + obj.width, obj.y, 7, -7))
+  obj.bullets.push(new Bullet(obj.x + obj.width, obj.y + obj.height / 2, 7, 0))
+  obj.bullets.push(new Bullet(obj.x + obj.width, obj.y + obj.height, 7, 7))
+  obj.bullets.push(new Bullet(obj.x + obj.width / 2, obj.y + obj.height, 0, 7))
+  obj.bullets.push(new Bullet(obj.x, obj.y + obj.height, -7, 7))
+  obj.bullets.push(new Bullet(obj.x, obj.y + obj.height / 2, -7, 0))
+
+}
+
