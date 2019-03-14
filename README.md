@@ -48,13 +48,13 @@ The war could take place in three different places:
 
 ### Weapons
 
-Each tank carries a machine gun and a laser gun.
+Each tank carries a machine gun, a laser gun and a energy ball cannon.
 
 - The machine gun shoots fast but will only damage the tank. You need tow bullets to kill the enemy.
 
 - The laser gun takes time to charge the energy to fire it. However, if it hits the enemy, it will kill instantly.
 
-- The super power. Each tank can load a super energy ball that when fired will follow the enemy until it hits him and kill him.
+- The super power. Each tank can load a super energy ball that when fired will follow the enemy until it hits him and kill him. This ball can only be fired every 7 seconds. There is an indicator bar to know when the pilots can shoot.
 
 ## Controls
 
@@ -66,7 +66,7 @@ The pilot of the Part-time army will have the following controls:
 - RIGHT - D :arrow_right:
 - FIRE - V :boom:
 - CHANGE WEAPON - C :gun:
-- POWER - X
+- POWER - X :zap:
 
 The pilot of the Full-time army will have the following controls:
 
@@ -76,4 +76,4 @@ The pilot of the Full-time army will have the following controls:
 - RIGHT - Arrow Right :arrow_right:
 - FIRE - P :boom:
 - CHANGE WEAPON - O :gun:
-- POWER - I
+- POWER - I :zap:
