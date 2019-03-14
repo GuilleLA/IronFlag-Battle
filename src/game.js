@@ -3,7 +3,7 @@ var bodysel = document.querySelector("body");
 var infoBoxLife = document.getElementsByClassName("info-box-life");
 var infoBoxWeapon = document.getElementsByClassName("info-box-weapon");
 var infoBoxPower = document.getElementsByClassName("info-box-power");
-var prueba = document.getElementsByClassName("prueba");
+var loadBar = document.getElementsByClassName("load-bar");
 var machinePT = document.querySelector(".machinePT");
 var machineFT = document.querySelector(".machineFT");
 var laserPTImg = document.querySelector(".laserPT");
@@ -133,14 +133,14 @@ function updateGameArea() {
 
 function alwaysCall() {
   if (myGameArea.frame === 0){
-    prueba[0].classList.add("progress2")
-    prueba[1].classList.add("progress2")
+    loadBar[0].classList.add("progress2")
+    loadBar[1].classList.add("progress2")
   }
   if (playerFT.power === 0){
-    prueba[1].classList.add("progress2")
+    loadBar[1].classList.add("progress2")
   }
   if (playerPT.power === 0){
-    prueba[0].classList.add("progress2")
+    loadBar[0].classList.add("progress2")
   }
   myGameArea.clearArea();
   myGameArea.frame +=1;
@@ -174,9 +174,9 @@ function creationOfObjects(){
 //reset between stages
 function reset() {
   if (stage < 6){
-    playerFT.power = 0;
-    playerPT.power = 0;
-    myGameArea.frame = 0;
+    playerFT.power = -1;
+    playerPT.power = -1;
+    myGameArea.frame = -1;
     playerFT.flag = false;
     playerFT.x = playerFT.initialPosX;
     playerFT.y = playerFT.initialPosY;
@@ -190,7 +190,11 @@ function reset() {
     flagPT.x = flagPT.initialPosX;
     flagPT.y = flagPT.initialPosY;
     playerPT.bullets = [];
-    playerFTbullets = [];
+    playerFT.bullets = [];
+    playerPT.laser = [];
+    playerFT.laser = [];
+    playerPT.powerArray = [];
+    playerFT.powerArray = [];
     bulletsMap = [];
     life2PT.classList.remove("hide");
     damagePT.classList.add("hide");
@@ -203,8 +207,10 @@ function reset() {
     machinePT.classList.remove("hide");
     playerFT.weapon = "machine gun";
     laserFTImg.classList.add("hide");
-          machineFT.classList.remove("hide")
-    var canvasSel = document.querySelector("canvas")
+    machineFT.classList.remove("hide");
+    loadBar[0].classList.remove("progress2");
+    loadBar[1].classList.remove("progress2");
+    var canvasSel = document.querySelector("canvas");
     scorePtHtml.innerHTML = "<p>Part-time Ironhacker</p>" + scorePT;
     scoreFtHtml.innerHTML = "<p>Full-time Ironhacker</p>" + scoreFT;
     canvasSel.classList.add("hide");
@@ -228,6 +234,10 @@ function reset() {
     flagPT.y = flagPT.initialPosY;
     playerPT.bullets = [];
     playerFTbullets = [];
+    playerPT.laser = [];
+    playerFT.laser = [];
+    playerPT.powerArray = [];
+    playerFT.powerArray = [];
     bulletsMap = [];
     life2PT.classList.remove("hide");
     damagePT.classList.add("hide");
@@ -235,6 +245,8 @@ function reset() {
     damageFT.classList.add("hide");
     playerPT.life = 2;
     playerFT.life = 2;
+    loadBar[0].classList.remove("progress2");
+    loadBar[1].classList.remove("progress2");
     var canvasSel = document.querySelector("canvas");
     canvasSel.classList.add("hide");
     if (scorePT > scoreFT){winner.innerHTML = "Part-time Ironhacker won";}

@@ -277,14 +277,14 @@ window.onload = function() {
         if(playerFT.power >= 420){
           key73 = true;
           playerFT.power = 0;
-          prueba[1].classList.remove("progress2")
+          loadBar[1].classList.remove("progress2")
         }
         break;
       case 88:
         if(playerPT.power >= 420){
           key88 = true;
           playerPT.power = 0;
-          prueba[0].classList.remove("progress2")
+          loadBar[0].classList.remove("progress2")
         }
         break;
     }
