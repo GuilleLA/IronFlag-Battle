@@ -122,8 +122,7 @@ function updateGameArea() {
 
   }
   if (stage === 5){
-    myGameArea.clearArea();
-    myGameArea.frame +=1;
+    alwaysCall();
     mapOrders();
     bulletsOrders();
     ballOrders();
@@ -136,6 +135,8 @@ function alwaysCall() {
   if (myGameArea.frame === 0){
     loadBar[0].classList.add("progress2")
     loadBar[1].classList.add("progress2")
+    playerFT.facing = "up";
+    playerPT.facing = "down";
   }
   if (playerFT.power === 0){
     loadBar[1].classList.add("progress2")
@@ -211,10 +212,10 @@ function reset() {
     damageFT.classList.add("hide");
     playerPT.life = 2;
     playerFT.life = 2;
-    playerPT.weapon = "machine gun";
+    playerPT.weapon = "machine-gun";
     laserPTImg.classList.add("hide")
     machinePT.classList.remove("hide");
-    playerFT.weapon = "machine gun";
+    playerFT.weapon = "machine-gun";
     laserFTImg.classList.add("hide");
     machineFT.classList.remove("hide");
     loadBar[0].classList.remove("progress2");

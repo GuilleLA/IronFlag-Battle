@@ -175,7 +175,10 @@ function bulletsAppear(){
   bulletCreation(key86, playerPT);
   powerCreation(key73, playerFT);
   powerCreation(key88, playerPT);
-  key80 = key86 = key88 = key73 = false;
+  key80 = false; 
+  key86 = false;
+  key88 = false;
+  key73 = false;
 }
 
 //Bullets orders
